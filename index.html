@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIR Marts</title>
+<style>
+body {
+background-color: #0a0a0a;
+color: #ffffff;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+padding: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+header {
+text-align: center;
+padding: 2rem;
+width: 100%;
+background-color: #141414;
+border-bottom: 2px solid #00ffcc;
+box-shadow: 0 0 15px #00ffcc;
+}
+h1 {
+color: #00ffcc;
+text-shadow: 0 0 10px #00ffcc;
+margin: 0;
+font-size: 2.5rem;
+}
+p.subtitle {
+color: #cccccc;
+margin-top: 10px;
+}
+.container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+padding: 40px 20px;
+max-width: 1200px;
+}
+.product-card {
+background-color: #1a1a1a;
+border: 1px solid #ff00ff;
+border-radius: 10px;
+padding: 20px;
+width: 280px;
+text-align: center;
+box-shadow: 0 0 10px #ff00ff;
+transition: transform 0.3s ease;
+}
+.product-card:hover {
+transform: scale(1.05);
+box-shadow: 0 0 20px #ff00ff;
+}
+.product-card h2 {
+color: #ffffff;
+font-size: 1.5rem;
+}
+.price {
+color: #00ffcc;
+font-size: 1.2rem;
+font-weight: bold;
+margin: 15px 0;
+}
+.buy-btn {
+background-color: #00ffcc;
+color: #000000;
+border: none;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+border-radius: 5px;
+font-weight: bold;
+transition: all 0.3s ease;
+width: 100%;
+}
+.buy-btn:hover {
+background-color: #ffffff;
+box-shadow: 0 0 10px #00ffcc;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>VIR Marts</h1>
+<p class="subtitle">وجهتك الأولى للألعاب وكل ما تحتاجه</p>
+</header>
+
+<div class="container">
+<div class="product-card">
+<h2>لعبة مميزة</h2>
+<p>وصف مختصر للمنتج يوضح مميزاته.</p>
+<div class="price">3000 د.ج</div>
+<button class="buy-btn" onclick="buyItem('لعبة مميزة')">شراء الآن</button>
+</div>
+
+<div class="product-card">
+<h2>حساب ألعاب</h2>
+<p>وصف مختصر للمنتج يوضح مميزاته.</p>
+<div class="price">1500 د.ج</div>
+<button class="buy-btn" onclick="buyItem('حساب ألعاب')">شراء الآن</button>
+</div>
+</div>
+
+<script>
+function buyItem(itemName) {
+alert('لقد قمت بالضغط على شراء: ' + itemName + '\nيرجى التواصل معنا عبر صفحتنا على فيسبوك لإتمام الطلب.');
+}
+</script>
+</body>
+</html>
