@@ -3,203 +3,451 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vir Mart | متجرك الشامل لكل ما تحتاجه</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+  <title>Vir Mart | المتجر الأسطوري</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
+    /* الألوان الفاقعة والأسطورية */
     :root {
-      --bg-color: #05070f;
-      --card-bg: rgba(15, 23, 42, 0.8);
-      --primary-cyan: #00f7ff;
-      --primary-purple: #8b5cf6;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --glass-border: rgba(0, 247, 255, 0.15);
+      --primary-pink: #ff007f;
+      --primary-cyan: #00e5ff;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text-light: #ffffff;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth; /* تمرير سلس عند الضغط على الروابط */
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+    html { scroll-behavior: smooth; }
+    
+    /* خلفية متدرجة متحركة بألوان فاقعة وفخمة */
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      overflow-x: hidden;
+      background: linear-gradient(-45deg, #2b0054, #8b005d, #001f54, #4a00e0);
+      background-size: 400% 400%;
+      animation: vibrantBG 12s ease infinite;
+      color: var(--text-light);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+    @keyframes vibrantBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    /* تأثير إضاءة احترافي في الخلفية */
-    body::before {
-      content: '';
-      position: fixed;
-      top: -20vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70vw;
-      height: 70vh;
-      background: radial-gradient(circle, rgba(0, 247, 255, 0.08), transparent 70%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
+    /* الشريط العلوي */
     .promo-bar {
-      background: linear-gradient(90deg, var(--primary-purple), var(--primary-cyan));
-      color: #000;
+      background: linear-gradient(90deg, var(--primary-pink), var(--primary-cyan));
+      color: #fff;
       font-weight: 900;
       text-align: center;
-      padding: 8px 0;
-      font-size: 0.95rem;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    
-    .promo-bar p {
-      display: inline-block;
-      animation: scrollPromo 20s linear infinite;
-    }
-    @keyframes scrollPromo {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+      padding: 12px 0;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
     }
 
+    /* الترويسة الزجاجية الفخمة */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       padding: 20px 5%;
-      background: rgba(5, 7, 15, 0.95);
-      backdrop-filter: blur(15px);
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--glass-border);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-
     .logo {
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       font-weight: 900;
       background: linear-gradient(to right, #fff, var(--primary-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
       letter-spacing: 2px;
-      text-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+      text-shadow: 0px 4px 15px rgba(0, 229, 255, 0.4);
     }
-
-    nav {
-      margin-top: 10px;
-    }
-
     nav a {
-      color: var(--text-main);
+      color: #fff;
       text-decoration: none;
-      margin-right: 20px;
+      margin-right: 25px;
       font-weight: 700;
-      transition: color 0.3s;
+      font-size: 1.2rem;
+      transition: 0.3s;
     }
-    nav a:hover {
-      color: var(--primary-cyan);
-    }
+    nav a:hover { color: var(--primary-pink); text-shadow: 0 0 10px var(--primary-pink); }
 
+    /* القسم الترحيبي (Hero) */
     .hero {
-      position: relative;
-      padding: 80px 20px;
+      padding: 120px 20px;
       text-align: center;
-      background: linear-gradient(135deg, rgba(15,23,42,0.6), rgba(5,7,15,0.9));
-      border-bottom: 1px solid var(--glass-border);
     }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      margin-bottom: 15px;
-      color: #fff;
-      text-shadow: 0 0 25px var(--primary-cyan);
+      font-size: clamp(3rem, 7vw, 5rem);
+      margin-bottom: 20px;
+      font-weight: 900;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .hero h1 span {
+      color: var(--primary-pink);
     }
     .hero p {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 30px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-
+    /* قسم المنتجات الأسطوري */
+    .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
     .section-title {
-      font-size: 2.2rem;
+      font-size: 3rem;
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
       font-weight: 900;
-    }
-    .section-title span {
-      color: var(--primary-cyan);
+      text-shadow: 0 5px 15px rgba(0,0,0,0.4);
     }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
     }
-
+    
+    /* تصميم البطاقات الزجاجية الفاقعة */
     .card {
-      background: var(--card-bg);
+      background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
+      border-radius: 25px;
       overflow: hidden;
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(15px);
       display: flex;
       flex-direction: column;
+      transition: all 0.4s ease;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     }
     .card:hover {
-      transform: translateY(-12px);
+      transform: translateY(-15px);
       border-color: var(--primary-cyan);
-      box-shadow: 0 15px 35px rgba(0, 247, 255, 0.25);
+      box-shadow: 0 20px 50px rgba(0, 229, 255, 0.4), 0 0 20px rgba(255, 0, 127, 0.4) inset;
     }
 
     .badge {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: linear-gradient(45deg, #ff0055, #ff5588);
+      top: 20px;
+      right: 20px;
+      background: var(--primary-pink);
       color: #fff;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 900;
       z-index: 10;
-      box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+      box-shadow: 0 0 20px var(--primary-pink);
     }
 
-    /* تحسين عرض لقطات الشاشة والصور */
     .card-img-wrapper {
-      overflow: hidden;
-      height: 260px;
-      background: #ffffff; 
-      padding: 10px;
+      height: 280px;
+      background: rgba(255, 255, 255, 0.9); /* خلفية بيضاء لتبرز المنتجات بوضوح */
+      padding: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid var(--glass-border);
+      overflow: hidden;
     }
-    
     .card img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      transition: transform 0.5s ease;
-      border-radius: 10px;
+      transition: transform 0.5s;
     }
-    .card:hover img >
+    .card:hover img {
+      transform: scale(1.12);
+    }
+
+    .card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-title { font-size: 1.5rem; margin-bottom: 15px; font-weight: 900; }
+    .card-desc { font-size: 1.1rem; color: #e2e8f0; margin-bottom: 25px; flex-grow: 1; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; }
+    .price {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--primary-cyan);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    /* زر الشراء النابض */
+    .btn-buy {
+      background: linear-gradient(45deg, var(--primary-pink), #ff5e00);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 900;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(255, 0, 127, 0.5);
+    }
+    .btn-buy:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 25px rgba(255, 0, 127, 0.8);
+    }
+
+    /* نموذج الطلب الأسطوري */
+    .order-section {
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid var(--primary-cyan);
+      border-radius: 30px;
+      padding: 60px;
+      margin-top: 80px;
+      backdrop-filter: blur(25px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(0, 229, 255, 0.2);
+    }
+    .form-group { margin-bottom: 25px; }
+    label { display: block; margin-bottom: 12px; font-weight: 900; font-size: 1.3rem; color: #fff; }
+    input, select {
+      width: 100%;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--glass-border);
+      border-radius: 15px;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    input::placeholder { color: #cbd5e1; }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-pink);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
+    }
+    option { background: #2b0054; color: #fff; }
+    
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(45deg, var(--primary-cyan), var(--primary-pink));
+      color: #fff;
+      border: none;
+      padding: 20px;
+      font-size: 1.6rem;
+      font-weight: 900;
+      border-radius: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.4s;
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.5);
+    }
+    .btn-submit:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255, 0, 127, 0.7);
+    }
+
+    footer { text-align: center; padding: 40px; margin-top: 80px; border-top: 1px solid var(--glass-border); font-weight: 700; font-size: 1.1rem; }
+    
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 20px; }
+      nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+      nav a { margin: 0; }
+      .order-section { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="promo-bar">
+    أهلاً بك في Vir Mart | جودة أسطورية وتوصيل سريع لولاية البليدة وكامل الوطن 🚀
+  </div>
+
+  <header>
+    <div class="logo">Vir Mart</div>
+    <nav>
+      <a href="#products">المنتجات</a>
+      <a href="#order">اطلب الآن</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>التميز <span>والفخامة</span> في مكان واحد</h1>
+    <p>لقد صممنا Vir Mart ليكون واجهتك الأولى. تصفح منتجاتنا ذات الجودة العالية واطلب ما تحتاجه بضغطة زر واحدة.</p>
+  </section>
+
+  <main class="container" id="products">
+    <h2 class="section-title">التشكيلة الأسطورية</h2>
+    
+    <div class="products-grid">
+      
+      <!-- المنتج الأول -->
+      <article class="card">
+        <span class="badge">أصلي 100%</span>
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="قرص تخزين M.2">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">قرص تخزين Micron M.2 256GB</h3>
+          <p class="card-desc">سرعة نقل بيانات صاروخية لتسريع حاسوبك المكتبي أو المحمول بشكل لا يصدق.</p>
+          <div class="card-footer">
+            <span class="price">3500 دج</span>
+            <button type="button" class="btn-buy" onclick="selectProduct('قرص تخزين Micron M.2 256GB - 3500 دج')">أضف للطلب</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- المنتج الثاني -->
+      <article class="card">
+        <span class="badge">الأكثر مبيعاً</span>
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Game Stick">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Game Stick (تصميم PS5)</h3>
+          <p class="card-desc">آلاف الألعاب مدمجة مع يدي تحكم لاسلكيتين بتصميم عصري وأنيق يضمن لك متعة لا تنتهي.</p>
+          <div class="card-footer">
+            <span class="price">4800 دج</span>
+            <button type="button" class="btn-buy" onclick="selectProduct('جهاز ألعاب Game Stick - 4800 دج')">أضف للطلب</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- المنتج الثالث -->
+      <article class="card">
+        <span class="badge">للبنات</span>
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="دمية طائرة">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">دمية الأميرة الطائرة</h3>
+          <p class="card-desc">لعبة سحرية تطير في الهواء وتتحكم بها عبر حركة اليد فقط. الهدية المثالية للأطفال.</p>
+          <div class="card-footer">
+            <span class="price">2500 دج</span>
+            <button type="button" class="btn-buy" onclick="selectProduct('دمية الأميرة الطائرة - 2500 دج')">أضف للطلب</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- المنتج الرابع -->
+      <article class="card">
+        <span class="badge">أداة عملية</span>
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="مسدس غسيل">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">مسدس الغسيل اللاسلكي</h3>
+          <p class="card-desc">رشاش مياه عالي الضغط ببطارية قوية، لتنظيف سيارتك وحديقتك بكل سهولة واحترافية.</p>
+          <div class="card-footer">
+            <span class="price">7500 دج</span>
+            <button type="button" class="btn-buy" onclick="selectProduct('مسدس غسيل السيارات اللاسلكي - 7500 دج')">أضف للطلب</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- المنتج الخامس -->
+      <article class="card">
+        <span class="badge">جودة عالية</span>
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Hard Drive">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">قرص صلب Toshiba 320GB</h3>
+          <p class="card-desc">مساحة تخزين آمنة وموثوقة لأجهزة اللابتوب بحجم 2.5 بوصة من شركة توشيبا.</p>
+          <div class="card-footer">
+            <span class="price">3200 دج</span>
+            <button type="button" class="btn-buy" onclick="selectProduct('قرص صلب Toshiba 320GB - 3200 دج')">أضف للطلب</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- المنتج السادس -->
+      <article class="card">
+        <span class="badge">كلاسيك</span>
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Retro Controller">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">جهاز Game Stick Lite</h3>
+          <p class="card-desc">استعد ذكريات الزمن الجميل مع آلاف الألعاب الكلاسيكية الجاهزة للعب مباشرة.</p>
+          <div class="card-footer">
+            <span class="price">3500 دج</span>
+            <button type="button" class="btn-buy" onclick="selectProduct('جهاز Game Stick Lite - 3500 دج')">أضف للطلب</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <section class="container" id="order">
+    <div class="order-section">
+      <h2 class="section-title" style="margin-bottom: 30px;">إتمام الطلب بأمان</h2>
+      <form id="checkout-form">
+        
+        <div class="form-group">
+          <label>المنتج الذي اخترته:</label>
+          <input type="text" id="selected-product" required readonly placeholder="اضغط على زر (أضف للطلب) في الأعلى">
+        </div>
+
+        <div class="form-group">
+          <label>الاسم الكامل:</label>
+          <input type="text" id="customer-name" required placeholder="أدخل اسمك ولقبك">
+        </div>
+
+        <div class="form-group">
+          <label>رقم الهاتف:</label>
+          <input type="tel" id="customer-phone" required pattern="^(0)(5|6|7)[0-9]{8}$" title="رقم جزائري يتكون من 10 أرقام" placeholder="مثال: 0555000000">
+        </div>
+
+        <div class="form-group">
+          <label>الولاية / المنطقة:</label>
+          <select id="customer-state" required>
+            <option value="العفرون" selected>العفرون</option>
+            <option value="البليدة">ولاية البليدة</option>
+            <option value="الجزائر العاصمة">الجزائر العاصمة</option>
+            <option value="تيبازة">تيبازة</option>
+            <option value="المدية">المدية</option>
+            <option value="ولايات أخرى">ولايات أخرى</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit">تأكيد الطلب عبر واتساب 🚀</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 جميع الحقوق محفوظة لمتجر Vir Mart الأسطوري</p>
+  </footer>
+
+  <script>
+    // وظيفة لاختيار المنتج
+    function selectProduct(productDetails) {
+      document.getElementById('selected-product').value = productDetails;
+      document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // وظيفة إرسال الطلب الخالية من أي أخطاء
+    document.getElementById('checkout-form').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      const product = document.getElementById('selected-product').value;
+      const name = document.getElementById('customer-name').value;
+      const phone = document.getElementById('customer-phone').value;
+      const state = document.getElementById('customer-state').value;
+
+      // ضع رقمك هنا للبدء في استقبال الطلبات
+      const myWhatsAppNumber = "213000000000"; 
+      
+      const rawMessage = `مرحباً Vir Mart 🚀\nلدي طلب جديد:\n\n🛒 المنتج: ${product}\n👤 الاسم: ${name}\n📱 الهاتف: ${phone}\n📍 المكان: ${state}`;
+      
+      const encodedMessage = encodeURIComponent(rawMessage);
+      window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodedMessage}`, '_blank');
+    });
+  </script>
+
+</body>
+</html>
