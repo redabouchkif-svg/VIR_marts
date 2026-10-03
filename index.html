@@ -8,289 +8,198 @@
   
   <style>
     :root {
-      --bg-color: #03050a;
-      --card-bg: rgba(10, 15, 30, 0.85);
+      --bg-color: #05070f;
+      --card-bg: rgba(15, 23, 42, 0.8);
       --primary-cyan: #00f7ff;
       --primary-purple: #8b5cf6;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --glass-border: rgba(0, 247, 255, 0.2);
+      --glass-border: rgba(0, 247, 255, 0.15);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-    html { scroll-behavior: smooth; }
-    body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-    
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth; /* تمرير سلس عند الضغط على الروابط */
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* تأثير إضاءة احترافي في الخلفية */
     body::before {
-      content: ''; position: fixed; top: -20vh; left: 50%; transform: translateX(-50%);
-      width: 80vw; height: 80vh; background: radial-gradient(circle, rgba(0, 247, 255, 0.05), transparent 70%);
-      pointer-events: none; z-index: -1;
+      content: '';
+      position: fixed;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70vw;
+      height: 70vh;
+      background: radial-gradient(circle, rgba(0, 247, 255, 0.08), transparent 70%);
+      pointer-events: none;
+      z-index: -1;
     }
 
-    .promo-bar { background: linear-gradient(90deg, var(--primary-purple), var(--primary-cyan)); color: #000; font-weight: 900; text-align: center; padding: 8px 0; font-size: 0.95rem; overflow: hidden; white-space: nowrap; }
-    .promo-bar p { display: inline-block; animation: scrollPromo 20s linear infinite; }
-    @keyframes scrollPromo { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+    .promo-bar {
+      background: linear-gradient(90deg, var(--primary-purple), var(--primary-cyan));
+      color: #000;
+      font-weight: 900;
+      text-align: center;
+      padding: 8px 0;
+      font-size: 0.95rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
     
-    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(3, 5, 10, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); position: sticky; top: 0; z-index: 1000; }
-    .logo { font-size: 2.2rem; font-weight: 900; background: linear-gradient(to right, #fff, var(--primary-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 2px; }
-    nav a { color: var(--text-main); text-decoration: none; margin-right: 20px; font-weight: 700; transition: color 0.3s; }
-    nav a:hover { color: var(--primary-cyan); }
-
-    .hero { position: relative; padding: 80px 20px; text-align: center; background: linear-gradient(135deg, rgba(10,15,30,0.8), rgba(3,5,10,0.9)); border-bottom: 1px solid var(--glass-border); }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 15px; text-shadow: 0 0 25px var(--primary-cyan); }
-    .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
-
-    .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
-    .section-title { font-size: 2.2rem; text-align: center; margin-bottom: 50px; font-weight: 900; }
-    .section-title span { color: var(--primary-cyan); }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
-    
-    .card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s; position: relative; }
-    .card:hover { transform: translateY(-8px); border-color: var(--primary-cyan); box-shadow: 0 15px 35px rgba(0, 247, 255, 0.15); }
-    .badge { position: absolute; top: 15px; right: 15px; background: linear-gradient(45deg, #ff0055, #ff5588); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; z-index: 10; box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); }
-
-    .media-container { position: relative; height: 280px; background: #ffffff; border-bottom: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; padding: 10px; }
-    .media-item { max-width: 100%; max-height: 100%; object-fit: contain; display: none; border: none; border-radius: 10px; }
-    .media-item.active { display: block; }
-    
-    .media-controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 12px; background: rgba(5, 8, 15, 0.9); }
-    .media-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 6px 12px; border-radius: 15px; font-size: 0.85rem; cursor: pointer; transition: 0.3s; font-weight: 700; }
-    .media-btn:hover { background: #334155; }
-    .media-btn.active { background: var(--primary-cyan); color: #000; border-color: var(--primary-cyan); box-shadow: 0 0 10px rgba(0, 247, 255, 0.4); }
-    .video-btn { background: #dc2626; color: #fff; border-color: #b91c1c; }
-    .video-btn.active { background: #ef4444; color: #fff; box-shadow: 0 0 15px rgba(239, 68, 68, 0.5); }
-
-    .card-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
-    .card-title { font-size: 1.3rem; margin-bottom: 10px; line-height: 1.4; color: #fff; }
-    .card-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 25px; flex-grow: 1; }
-    .card-footer { display: flex; justify-content: space-between; align-items: center; }
-    .price { font-size: 1.4rem; font-weight: 900; color: var(--primary-cyan); }
-    .btn-buy { background: linear-gradient(45deg, var(--primary-cyan), var(--primary-purple)); color: #000; border: none; padding: 10px 22px; border-radius: 25px; font-weight: 900; cursor: pointer; transition: 0.3s; }
-    .btn-buy:hover { color: #fff; transform: scale(1.05); box-shadow: 0 0 20px rgba(139, 92, 246, 0.6); }
-
-    .order-section { background: linear-gradient(135deg, rgba(10,15,30,0.95), rgba(3,5,10,0.95)); border: 1px solid var(--primary-purple); border-radius: 25px; padding: 40px; margin-top: 60px; box-shadow: 0 0 40px rgba(139, 92, 246, 0.15); }
-    .form-group { margin-bottom: 25px; }
-    label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--primary-cyan); font-size: 1.1rem; }
-    input, select { width: 100%; padding: 16px; background: rgba(0,0,0,0.6); border: 1px solid var(--glass-border); border-radius: 12px; color: #fff; font-size: 1rem; transition: 0.3s; }
-    input:focus, select:focus { outline: none; border-color: var(--primary-cyan); background: rgba(0,0,0,0.8); }
-    option { background: #05070f; color: #fff; }
-    .btn-submit { width: 100%; background: var(--primary-cyan); color: #000; border: none; padding: 18px; font-size: 1.3rem; font-weight: 900; border-radius: 12px; cursor: pointer; margin-top: 15px; transition: 0.3s; }
-    .btn-submit:hover { background: #fff; box-shadow: 0 0 30px rgba(0, 247, 255, 0.6); }
-
-    footer { text-align: center; padding: 30px; margin-top: 50px; border-top: 1px solid var(--glass-border); color: var(--text-muted); }
-    @media (max-width: 768px) { header { flex-direction: column; gap: 15px; } }
-  </style>
-</head>
-<body>
-
-  <div class="promo-bar">
-    <p>🔥 تشكيلة جديدة: أحدث الأجهزة والإلكترونيات | توصيل سريع ومضمون 🔥</p>
-  </div>
-
-  <header>
-    <div class="logo">Vir Mart</div>
-    <nav>
-      <a href="#products">المنتجات</a>
-      <a href="#order">إتمام الشراء</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h1>السيطرة بين يديك مع Vir Mart</h1>
-    <p>تصفح منتجاتنا الحقيقية، شاهد فيديوهاتها الإعلانية، واطلبها مباشرة باحترافية وأمان.</p>
-  </section>
-
-  <main class="container" id="products">
-    <h2 class="section-title">معروضاتنا <span>المميزة</span></h2>
-    
-    <!-- الشبكة التفاعلية للمنتجات -->
-    <div class="products-grid" id="dynamic-grid"></div>
-  </main>
-
-  <section class="container" id="order">
-    <div class="order-section">
-      <h2 class="section-title">إتمام <span>الطلب</span></h2>
-      <!-- تم إزالة onsubmit من هنا لتفادي خطأ إعادة تحميل الصفحة -->
-      <form id="checkout-form">
-        
-        <div class="form-group">
-          <label>المنتج المختار:</label>
-          <input type="text" id="selected-product" required readonly placeholder="يرجى الضغط على زر (أضف لطلبك) من المنتجات أعلاه">
-        </div>
-
-        <div class="form-group">
-          <label>الاسم واللقب:</label>
-          <input type="text" id="customer-name" required placeholder="أدخل اسمك الكامل">
-        </div>
-
-        <div class="form-group">
-          <label>رقم الهاتف (الجزائر):</label>
-          <input type="tel" id="customer-phone" required pattern="^(0)(5|6|7)[0-9]{8}$" title="الرجاء إدخال رقم هاتف صحيح يبدأ بـ 05 أو 06 أو 07" placeholder="مثال: 0555000000">
-        </div>
-
-        <div class="form-group">
-          <label>الولاية / المنطقة:</label>
-          <select id="customer-state" required>
-            <option value="العفرون" selected>العفرون</option>
-            <option value="البليدة">البليدة (وسط والبلديات الأخرى)</option>
-            <option value="الجزائر العاصمة">الجزائر العاصمة</option>
-            <option value="تيبازة">تيبازة</option>
-            <option value="المدية">المدية</option>
-            <option value="ولايات أخرى">ولايات أخرى</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn-submit">تأكيد وإرسال الطلب عبر واتساب 💬</button>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <p>جميع الحقوق محفوظة &copy; 2026 متجر Vir Mart | تسوق باحترافية وأمان</p>
-  </footer>
-
-  <script>
-    // قاعدة البيانات باستخدام أسماء ملفاتك المحلية بالحرف الواحد
-    const productsData = [
-      {
-        title: "قرص تخزين Micron M.2 NVMe 256GB",
-        desc: "أداء فائق السرعة لنقل البيانات، الحل الأمثل لتسريع حاسوبك المكتبي أو المحمول.",
-        badge: "أصلي 100%",
-        price: "3500 دج", 
-        images: [
-          "20260930_112001.jpg", 
-          "20260930_112001.jpg" // مكررة مؤقتاً لتعمل الزاوية الثانية دون خطأ، يمكنك تغيير اسمها لاحقاً
-        ],
-        videoId: "Zn4RDtWIbgw" 
-      },
-      {
-        title: "جهاز ألعاب Game Stick (تصميم PS5)",
-        desc: "آلاف الألعاب المدمجة مع يدي تحكم لاسلكيتين بتصميم بلايستيشن 5 الأنيق.",
-        badge: "الأكثر طلباً",
-        price: "4800 دج",
-        images: [
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٧٢٨_Google.jpg",
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٧٢٨_Google.jpg"
-        ],
-        videoId: "iPatAUdvjgk"
-      },
-      {
-        title: "دمية الأميرة الطائرة السحرية",
-        desc: "لعبة تفاعلية مذهلة للبنات، تطير في الهواء وتتحكم بها بسهولة عبر حركة اليد بمستشعر حركي دقيق.",
-        badge: "للأطفال",
-        price: "2500 دج",
-        images: [
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٧٤٧_Google.jpg",
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٧٤٧_Google.jpg"
-        ],
-        videoId: "90WxanSMavE"
-      },
-      {
-        title: "جهاز غسيل السيارات اللاسلكي",
-        desc: "مسدس رش مياه عالي الضغط ببطارية، مثالي لغسيل السيارات والحدائق دون عناء الكابلات.",
-        badge: "جديد",
-        price: "7500 دج",
-        images: [
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٩٠٧_Google.jpg",
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٩٠٧_Google.jpg"
-        ],
-        videoId: "WGuRUXdoHWU"
-      },
-      {
-        title: "قرص صلب Toshiba 320GB",
-        desc: "مساحة تخزين موثوقة وآمنة للأجهزة المحمولة بحجم 2.5 بوصة من شركة توشيبا العريقة.",
-        badge: "جودة ممتازة",
-        price: "3200 دج",
-        images: [
-          "4e06378b-dfb9-4863-98de-1633cd9fe384.jpg",
-          "4e06378b-dfb9-4863-98de-1633cd9fe384.jpg"
-        ],
-        videoId: "QyY81j6L02I" 
-      },
-      {
-        title: "جهاز Game Stick Lite (كلاسيك)",
-        desc: "استعد أجمل ذكريات الطفولة مع آلاف الألعاب الكلاسيكية ويدي تحكم لاسلكيتين سهلة التوصيل.",
-        badge: "كلاسيك",
-        price: "3500 دج",
-        images: [
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٩٢٩_Google.jpg",
-          "Screenshot_٢٠٢٦٠٩١٨_٢١١٩٢٩_Google.jpg"
-        ],
-        videoId: "b-5qajAwKww"
-      }
-    ];
-
-    const grid = document.getElementById('dynamic-grid');
-
-    productsData.forEach((product, index) => {
-      let mediaItemsHTML = '';
-      let controlsHTML = '';
-
-      // الصور
-      product.images.forEach((img, i) => {
-        mediaItemsHTML += `<img src="${img}" class="media-item ${i === 0 ? 'active' : ''}" id="media-${index}-${i}" alt="${product.title}">`;
-        controlsHTML += `<button type="button" class="media-btn ${i === 0 ? 'active' : ''}" id="btn-${index}-${i}" onclick="switchMedia(${index}, ${i}, ${product.images.length})">زاوية ${i + 1}</button>`;
-      });
-
-      // فيديو يوتيوب
-      let vidIndex = product.images.length;
-      mediaItemsHTML += `<iframe class="media-item" id="media-${index}-${vidIndex}" src="https://www.youtube.com/embed/${product.videoId}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-      controlsHTML += `<button type="button" class="media-btn video-btn" id="btn-${index}-${vidIndex}" onclick="switchMedia(${index}, ${vidIndex}, ${product.images.length})">▶ إعلان</button>`;
-
-      const cardHTML = `
-        <article class="card">
-          <span class="badge">${product.badge}</span>
-          <div class="media-container">${mediaItemsHTML}</div>
-          <div class="media-controls">${controlsHTML}</div>
-          <div class="card-body">
-            <h3 class="card-title">${product.title}</h3>
-            <p class="card-desc">${product.desc}</p>
-            <div class="card-footer">
-              <span class="price">${product.price}</span>
-              <button type="button" class="btn-buy" onclick="selectProduct('${product.title} - ${product.price}')">أضف لطلبك</button>
-            </div>
-          </div>
-        </article>
-      `;
-      grid.insertAdjacentHTML('beforeend', cardHTML);
-    });
-
-    // التحكم بتبديل الصور والفيديو
-    function switchMedia(cardIndex, targetMediaIndex, totalImages) {
-      const totalMedia = totalImages + 1; 
-      for (let i = 0; i < totalMedia; i++) {
-        document.getElementById(`media-${cardIndex}-${i}`).classList.remove('active');
-        document.getElementById(`btn-${cardIndex}-${i}`).classList.remove('active');
-      }
-      document.getElementById(`media-${cardIndex}-${targetMediaIndex}`).classList.add('active');
-      document.getElementById(`btn-${cardIndex}-${targetMediaIndex}`).classList.add('active');
+    .promo-bar p {
+      display: inline-block;
+      animation: scrollPromo 20s linear infinite;
+    }
+    @keyframes scrollPromo {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
-    function selectProduct(productDetails) {
-      document.getElementById('selected-product').value = productDetails;
-      document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px 5%;
+      background: rgba(5, 7, 15, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    // الطريقة الصحيحة لمنع الخطأ عند الإرسال وفتح الواتساب
-    document.getElementById('checkout-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // هذا السطر يمنع الصفحة من إعادة التحميل والخطأ
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(to right, #fff, var(--primary-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+    }
 
-      const product = document.getElementById('selected-product').value;
-      const name = document.getElementById('customer-name').value;
-      const phone = document.getElementById('customer-phone').value;
-      const state = document.getElementById('customer-state').value;
+    nav {
+      margin-top: 10px;
+    }
 
-      // أضف رقمك الحقيقي هنا (مثال: 213555000000)
-      const myWhatsAppNumber = "213000000000"; 
-      
-      const rawMessage = `مرحباً متجر Vir Mart! \nأريد تأكيد طلب جديد:\n\n🛒 *المنتج:* ${product}\n👤 *الاسم:* ${name}\n📱 *الهاتف:* ${phone}\n📍 *المنطقة:* ${state}`;
-      
-      const encodedMessage = encodeURIComponent(rawMessage);
-      const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodedMessage}`;
-      
-      // فتح الواتساب
-      window.open(whatsappUrl, '_blank');
-    });
-  </script>
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--primary-cyan);
+    }
 
-</body>
-</html>
+    .hero {
+      position: relative;
+      padding: 80px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(15,23,42,0.6), rgba(5,7,15,0.9));
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 0 0 25px var(--primary-cyan);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 900;
+    }
+    .section-title span {
+      color: var(--primary-cyan);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-12px);
+      border-color: var(--primary-cyan);
+      box-shadow: 0 15px 35px rgba(0, 247, 255, 0.25);
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(45deg, #ff0055, #ff5588);
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+    }
+
+    /* تحسين عرض لقطات الشاشة والصور */
+    .card-img-wrapper {
+      overflow: hidden;
+      height: 260px;
+      background: #ffffff; 
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .card img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+      border-radius: 10px;
+    }
+    .card:hover img >
