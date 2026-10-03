@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vir Mart | واجهتك الأولى للتسوق</title>
-  <!-- استدعاء خط عربي احترافي -->
+  <title>Vir Mart | متجرك الشامل لكل ما تحتاجه</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
@@ -33,7 +31,6 @@
       line-height: 1.6;
     }
 
-    /* تأثير الإضاءة الخلفية */
     body::before {
       content: '';
       position: fixed;
@@ -47,7 +44,6 @@
       z-index: -1;
     }
 
-    /* الشريط الإعلاني العلوي */
     .promo-bar {
       background: linear-gradient(90deg, var(--primary-purple), var(--primary-cyan));
       color: #000;
@@ -58,16 +54,17 @@
       overflow: hidden;
       white-space: nowrap;
     }
+    
+    /* جعل حركة النص أبطأ وأكثر سلاسة */
     .promo-bar p {
       display: inline-block;
-      animation: scrollPromo 15s linear infinite;
+      animation: scrollPromo 20s linear infinite;
     }
     @keyframes scrollPromo {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
 
-    /* الترويسة (Header) */
     header {
       display: flex;
       justify-content: space-between;
@@ -103,16 +100,15 @@
       color: var(--primary-cyan);
     }
 
-    /* اللافتة الإعلانية الرئيسية (Hero Banner) */
     .hero {
       position: relative;
-      padding: 100px 20px;
+      padding: 80px 20px;
       text-align: center;
-      background: linear-gradient(rgba(5,7,15,0.8), rgba(5,7,15,0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+      background: linear-gradient(135deg, rgba(15,23,42,0.6), rgba(5,7,15,0.9));
       border-bottom: 1px solid var(--glass-border);
     }
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3rem;
       margin-bottom: 15px;
       color: #fff;
       text-shadow: 0 0 30px var(--primary-cyan);
@@ -121,29 +117,11 @@
       font-size: 1.2rem;
       color: var(--text-muted);
       margin-bottom: 30px;
-      max-width: 600px;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
-    .hero-btn {
-      background: var(--primary-cyan);
-      color: #000;
-      padding: 15px 40px;
-      font-size: 1.2rem;
-      font-weight: 900;
-      text-decoration: none;
-      border-radius: 30px;
-      box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
-      transition: 0.3s;
-      display: inline-block;
-    }
-    .hero-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 35px rgba(0, 247, 255, 0.8);
-      background: #fff;
-    }
 
-    /* قسم المنتجات */
     .container {
       max-width: 1200px;
       margin: 60px auto;
@@ -173,6 +151,8 @@
       overflow: hidden;
       position: relative;
       transition: 0.4s ease;
+      display: flex;
+      flex-direction: column;
     }
     .card:hover {
       transform: translateY(-10px);
@@ -197,29 +177,38 @@
     .card-img-wrapper {
       overflow: hidden;
       height: 250px;
+      background: #fff; /* خلفية بيضاء لتبرز صور منتجاتك بوضوح */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
     .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       transition: transform 0.5s ease;
     }
     .card:hover img {
-      transform: scale(1.1); /* تأثير التقريب الاحترافي */
+      transform: scale(1.08);
     }
 
     .card-body {
       padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
     .card-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       margin-bottom: 10px;
+      color: #fff;
     }
     .card-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 20px;
-      min-height: 45px;
+      flex-grow: 1;
     }
     .card-footer {
       display: flex;
@@ -227,7 +216,7 @@
       align-items: center;
     }
     .price {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 900;
       color: var(--primary-cyan);
     }
@@ -235,7 +224,7 @@
       background: linear-gradient(45deg, var(--primary-cyan), var(--primary-purple));
       color: #fff;
       border: none;
-      padding: 10px 25px;
+      padding: 8px 20px;
       border-radius: 25px;
       font-weight: 700;
       cursor: pointer;
@@ -247,7 +236,6 @@
       box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
     }
 
-    /* نموذج الطلب */
     .order-section {
       background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(5,7,15,0.9));
       border: 1px solid var(--primary-purple);
@@ -309,80 +297,123 @@
 </head>
 <body>
 
-  <!-- شريط العروض -->
   <div class="promo-bar">
-    <p>🔥 عروض حصرية: توصيل سريع لولاية البليدة وكامل الولايات | خصومات تصل إلى 30% على ملحقات الجيمنج 🔥</p>
+    <p>🔥 تشكيلة جديدة: أحدث الأجهزة والإلكترونيات والألعاب | توصيل سريع لولاية البليدة وكامل الولايات 🔥</p>
   </div>
 
-  <!-- الترويسة -->
   <header>
     <div class="logo">Vir Mart</div>
     <nav>
-      <a href="#products">أحدث المنتجات</a>
+      <a href="#products">المنتجات</a>
       <a href="#order">اطلب الآن</a>
     </nav>
   </header>
 
-  <!-- اللافتة الرئيسية (Hero) -->
   <section class="hero">
-    <h1>أهلاً بك في عالم الاحتراف</h1>
-    <p>متجر Vir Mart يوفر لك أفضل الأجهزة والملحقات بأعلى جودة. جهّز محطتك الآن وسيطر على اللعب.</p>
-    <a href="#products" class="hero-btn">تصفح المنتجات</a>
+    <h1>أهلاً بك في عالم التميز</h1>
+    <p>متجر Vir Mart يوفر لك تشكيلة واسعة من الإلكترونيات، الأجهزة الذكية، وألعاب الترفيه بأعلى جودة وأفضل الأسعار.</p>
   </section>
 
-  <!-- قسم المنتجات -->
   <main class="container" id="products">
-    <h2 class="section-title">منتجاتنا <span>المميزة</span></h2>
+    <h2 class="section-title">معروضاتنا <span>المميزة</span></h2>
     
     <div class="products-grid">
-      <!-- المنتج الأول -->
+      
+      <!-- منتج 1: M.2 SSD -->
       <article class="card">
-        <span class="badge">خصم 20%</span>
+        <span class="badge">أصلي</span>
         <div class="card-img-wrapper">
-          <!-- يمكنك استبدال الرابط أدناه بصورة منتجك من ملفاتك (مثال: images/headset.jpg) -->
-          <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="سماعة احترافية">
+          <img src="20260930_112001.jpg" alt="قرص تخزين M.2">
         </div>
         <div class="card-body">
-          <h3 class="card-title">سماعة جيمنج محيطية</h3>
-          <p class="card-desc">صوت نقي، ميكروفون عازل للضجيج، وتصميم مريح للعب لساعات طويلة.</p>
+          <h3 class="card-title">قرص تخزين Micron M.2 NVMe 256GB</h3>
+          <p class="card-desc">سرعة فائقة في الأداء ونقل البيانات، مثالي لتسريع حاسوبك.</p>
           <div class="card-footer">
-            <span class="price">4800 دج</span>
-            <button class="btn-buy" onclick="selectProduct('سماعة جيمنج محيطية - 4800 دج')">شراء الآن</button>
+            <span class="price">حدد السعر</span>
+            <button class="btn-buy" onclick="selectProduct('قرص تخزين Micron M.2 256GB')">طلب</button>
           </div>
         </div>
       </article>
 
-      <!-- المنتج الثاني -->
+      <!-- منتج 2: Game Stick PS5 Design -->
       <article class="card">
-        <span class="badge">الأكثر مبيعاً</span>
+        <span class="badge">الأكثر طلباً</span>
         <div class="card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="يد تحكم">
+          <img src="Screenshot_٢٠٢٦٠٩١٨_٢١١٧٢٨_Google.jpg" alt="جهاز ألعاب Game Stick">
         </div>
         <div class="card-body">
-          <h3 class="card-title">يد تحكم لاسلكية</h3>
-          <p class="card-desc">استجابة فورية، توافق مع الهاتف والحاسوب، وتصميم متين.</p>
+          <h3 class="card-title">جهاز ألعاب Game Stick الإصدار الأقوى</h3>
+          <p class="card-desc">يأتي مع يدي تحكم لاسلكيتين بتصميم عصري (PS5)، وآلاف الألعاب المدمجة.</p>
           <div class="card-footer">
-            <span class="price">3500 دج</span>
-            <button class="btn-buy" onclick="selectProduct('يد تحكم لاسلكية - 3500 دج')">شراء الآن</button>
+            <span class="price">حدد السعر</span>
+            <button class="btn-buy" onclick="selectProduct('جهاز ألعاب Game Stick (تصميم PS5)')">طلب</button>
           </div>
         </div>
       </article>
 
-      <!-- المنتج الثالث -->
+      <!-- منتج 3: دمية الأميرة الطائرة -->
+      <article class="card">
+        <span class="badge">للأطفال</span>
+        <div class="card-img-wrapper">
+          <img src="Screenshot_٢٠٢٦٠٩١٨_٢١١٧٤٧_Google.jpg" alt="دمية طائرة">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">دمية الأميرة الطائرة السحرية</h3>
+          <p class="card-desc">لعبة مميزة وممتعة تطير وتتحكم بها عبر مستشعر اليد.</p>
+          <div class="card-footer">
+            <span class="price">حدد السعر</span>
+            <button class="btn-buy" onclick="selectProduct('دمية الأميرة الطائرة')">طلب</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- منتج 4: مسدس الغسيل -->
       <article class="card">
         <span class="badge">جديد</span>
         <div class="card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="لوحة مفاتيح">
+          <img src="Screenshot_٢٠٢٦٠٩١٨_٢١١٩٠٧_Google.jpg" alt="مسدس غسيل سيارات">
         </div>
         <div class="card-body">
-          <h3 class="card-title">كيبورد ميكانيكي مضيء</h3>
-          <p class="card-desc">إضاءة RGB مذهلة وأزرار ميكانيكية سريعة الاستجابة.</p>
+          <h3 class="card-title">جهاز غسيل السيارات اللاسلكي</h3>
+          <p class="card-desc">مسدس رش مياه عالي الضغط مزود ببطارية قابلة للفصل، مثالي للسيارات والحدائق.</p>
           <div class="card-footer">
-            <span class="price">6200 دج</span>
-            <button class="btn-buy" onclick="selectProduct('كيبورد ميكانيكي مضيء - 6200 دج')">شراء الآن</button>
+            <span class="price">حدد السعر</span>
+            <button class="btn-buy" onclick="selectProduct('مسدس غسيل السيارات اللاسلكي')">طلب</button>
           </div>
         </div>
       </article>
+
+      <!-- منتج 5: Toshiba HDD -->
+      <article class="card">
+        <div class="card-img-wrapper">
+          <img src="4e06378b-dfb9-4863-98de-1633cd9fe384.jpg" alt="قرص صلب توشيبا">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">قرص صلب Toshiba 320GB (للأجهزة المحمولة)</h3>
+          <p class="card-desc">أقراص صلبة بحجم 2.5 بوصة من توشيبا، مساحة تخزين موثوقة لأجهزتك.</p>
+          <div class="card-footer">
+            <span class="price">حدد السعر</span>
+            <button class="btn-buy" onclick="selectProduct('قرص صلب Toshiba 320GB')">طلب</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- منتج 6: Game Stick Lite -->
+      <article class="card">
+        <span class="badge">كلاسيك</span>
+        <div class="card-img-wrapper">
+          <img src="Screenshot_٢٠٢٦٠٩١٨_٢١١٩٢٩_Google.jpg" alt="جهاز ألعاب كلاسيكي">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">جهاز ألعاب الطيبين Game Stick Lite</h3>
+          <p class="card-desc">استعد ذكرياتك مع آلاف الألعاب الكلاسيكية، مزود بيدي تحكم لاسلكيتين.</p>
+          <div class="card-footer">
+            <span class="price">حدد السعر</span>
+            <button class="btn-buy" onclick="selectProduct('جهاز ألعاب Game Stick Lite')">طلب</button>
+          </div>
+        </div>
+      </article>
+
     </div>
   </main>
 
@@ -425,33 +456,26 @@
   </section>
 
   <footer>
-    <p>جميع الحقوق محفوظة &copy; 2026 متجر Vir Mart | تطوير بإبداع واحترافية</p>
+    <p>جميع الحقوق محفوظة &copy; 2026 متجر Vir Mart | تسوق بثقة</p>
   </footer>
 
-  <!-- جافاسكريبت للتحكم بالوظائف -->
   <script>
-    // دالة لاختيار المنتج وتمرير اسمه إلى نموذج الطلب
     function selectProduct(productDetails) {
       document.getElementById('selected-product').value = productDetails;
       document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // دالة لإرسال الطلب مباشرة إلى رقمك على الواتساب
     function sendToWhatsApp(event) {
-      event.preventDefault(); // منع إعادة تحميل الصفحة
+      event.preventDefault();
       
       const product = document.getElementById('selected-product').value;
       const name = document.getElementById('customer-name').value;
       const phone = document.getElementById('customer-phone').value;
       const state = document.getElementById('customer-state').value;
 
-      // قم بتغيير هذا الرقم إلى رقم الواتساب الخاص بك (مع رمز البلد 213 للجزائر بدون أصفار في البداية)
-      const myWhatsAppNumber = "213000000000"; 
-
-      // بناء الرسالة التي ستصلك
+      const myWhatsAppNumber = "213000000000"; // أضف رقمك هنا
       const message = `مرحباً متجر Vir Mart! %0Aأريد طلب منتج:%0A🛒 *المنتج:* ${product}%0A👤 *الاسم:* ${name}%0A📱 *الهاتف:* ${phone}%0A📍 *الولاية:* ${state}`;
 
-      // فتح تطبيق واتساب مباشرة
       const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${message}`;
       window.open(whatsappUrl, '_blank');
     }
