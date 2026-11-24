@@ -19,7 +19,7 @@
       --success: #10b981;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -27,6 +27,10 @@
       margin: 0;
       padding: 0;
       font-family: 'Cairo', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -40,10 +44,9 @@
     .top-bar {
       background: linear-gradient(90deg, #1d4ed8, #0284c7);
       text-align: center;
-      padding: 8px 15px;
+      padding: 9px 15px;
       font-size: 0.9rem;
       font-weight: 700;
-      letter-spacing: 0.3px;
     }
 
     /* الهيدر */
@@ -51,13 +54,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 6%;
-      background: rgba(6, 9, 19, 0.9);
+      padding: 15px 6%;
+      background: rgba(6, 9, 19, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
     }
 
     .logo {
@@ -72,7 +75,7 @@
     .nav-btn {
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: #fff;
-      padding: 10px 22px;
+      padding: 9px 22px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 800;
@@ -88,7 +91,7 @@
     /* القسم الرئيسي Hero */
     .hero {
       max-width: 1150px;
-      margin: 40px auto;
+      margin: 35px auto;
       padding: 0 5%;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -105,14 +108,14 @@
       border-radius: 50px;
       font-size: 0.85rem;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       font-weight: 900;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .hero h1 span {
@@ -122,14 +125,14 @@
     .hero p {
       color: var(--text-muted);
       font-size: 1.05rem;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .price-box {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 18px 24px;
+      padding: 16px 24px;
       display: inline-flex;
       align-items: center;
       gap: 18px;
@@ -164,9 +167,9 @@
       text-align: center;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: #fff;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 800;
-      padding: 16px;
+      padding: 15px;
       border-radius: 14px;
       text-decoration: none;
       box-shadow: 0 10px 30px var(--accent-glow);
@@ -177,36 +180,72 @@
       transform: translateY(-3px);
     }
 
-    /* حاوية الصورة */
+    /* حاوية الصورة ومعرض الصور */
     .product-visual {
       background: radial-gradient(circle at center, rgba(37, 99, 235, 0.25), var(--bg-card));
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 25px;
+      padding: 20px;
       text-align: center;
-      position: relative;
     }
 
-    .product-visual img {
+    .main-img-container {
       width: 100%;
-      max-height: 420px;
-      object-fit: contain;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
       border-radius: 16px;
-      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    /* قسم الفيديو */
-    .video-section {
-      max-width: 900px;
+    .main-img-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.6));
+      transition: transform 0.3s ease;
+    }
+
+    /* صور مصغرة إضافية */
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .thumb {
+      width: 65px;
+      height: 65px;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: 0.2s;
+      background: var(--bg-dark);
+    }
+
+    .thumb.active, .thumb:hover {
+      border-color: var(--accent);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* المميزات */
+    .features {
+      max-width: 1150px;
       margin: 60px auto;
       padding: 0 5%;
-      text-align: center;
     }
 
     .section-title {
       font-size: 1.9rem;
       font-weight: 900;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     .section-title span {
@@ -215,37 +254,14 @@
 
     .section-subtitle {
       color: var(--text-muted);
+      text-align: center;
       margin-bottom: 28px;
-    }
-
-    .video-wrapper {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 14px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    .video-wrapper video {
-      width: 100%;
-      max-height: 500px;
-      border-radius: 14px;
-      background: #000;
-      display: block;
-    }
-
-    /* المميزات ومحتويات العلبة */
-    .features {
-      max-width: 1150px;
-      margin: 60px auto;
-      padding: 0 5%;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      margin-top: 30px;
     }
 
     .card {
@@ -263,9 +279,9 @@
     }
 
     .card h3 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .card p {
@@ -273,10 +289,10 @@
       font-size: 0.95rem;
     }
 
-    /* نموذج الطلب */
+    /* قسم الطلب الاحترافي */
     .order-section {
       max-width: 680px;
-      margin: 70px auto;
+      margin: 60px auto;
       padding: 0 5%;
     }
 
@@ -284,31 +300,64 @@
       background: var(--bg-card);
       border: 2px solid var(--primary);
       border-radius: 24px;
-      padding: 32px 26px;
-      box-shadow: 0 0 40px rgba(37, 99, 235, 0.2);
+      padding: 30px 24px;
+      box-shadow: 0 0 40px rgba(37, 99, 235, 0.22);
+    }
+
+    /* بطاقة المنتج المصغرة داخل نموذج الطلب */
+    .order-product-preview {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: 16px;
+      margin-bottom: 22px;
+    }
+
+    .order-product-preview img {
+      width: 75px;
+      height: 75px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .order-product-info h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .order-product-info span {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 1.1rem;
     }
 
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .form-group label {
       display: block;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-size: 0.95rem;
     }
 
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 13px 16px;
+      padding: 13px 15px;
       border-radius: 12px;
       border: 1px solid var(--border);
       background: #060913;
       color: #fff;
       font-size: 1rem;
       outline: none;
+      transition: border-color 0.2s;
     }
 
     .form-group input:focus,
@@ -316,12 +365,43 @@
       border-color: var(--accent);
     }
 
+    /* أزرار التحكم بالكمية */
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qty-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #060913;
+      color: var(--accent);
+      font-size: 1.3rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .qty-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .qty-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      min-width: 30px;
+      text-align: center;
+    }
+
     .summary-box {
       background: rgba(0, 210, 255, 0.06);
       border: 1px dashed var(--accent);
       border-radius: 14px;
       padding: 16px;
-      margin: 22px 0;
+      margin: 20px 0;
     }
 
     .summary-row {
@@ -347,17 +427,28 @@
       padding: 16px;
       border: none;
       border-radius: 14px;
-      background: linear-gradient(135deg, #10b981, #059669);
+      background: linear-gradient(135deg, #25D366, #128C7E);
       color: #fff;
       font-size: 1.15rem;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
-      transition: 0.2s;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+      transition: transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .submit-btn:hover {
       transform: scale(1.02);
+    }
+
+    .error-msg {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
     }
 
     footer {
@@ -374,7 +465,10 @@
         text-align: center;
       }
       .hero h1 {
-        font-size: 2rem;
+        font-size: 1.95rem;
+      }
+      .main-img-container {
+        height: 280px;
       }
     }
   </style>
@@ -382,7 +476,7 @@
 <body>
 
   <div class="top-bar">
-    🚀 عرض خاص من متجر Vir Mart | توصيل سريع لـ 58 ولاية والدفع عند الاستلام
+    🚀 متجر Vir Mart | توصيل سريع لـ 58 ولاية والدفع عند الاستلام
   </div>
 
   <header>
@@ -393,7 +487,7 @@
   <!-- القسم الرئيسي -->
   <section class="hero">
     <div>
-      <span class="badge">🔥 الأكثر مبيعاً في الجزائر</span>
+      <span class="badge">🔥 الأكثر طلباً في الجزائر</span>
       <h1>مسدس الغسيل اللاسلكي <span>Pelifish</span> عالي الضغط</h1>
       <p>اغسل سيارتك، دراجتك، حديقتك، وحتى المكيفات في دقائق وبدون الحاجة لكابلات الكهرباء أو الحنفية! يشتغل ببطارية ليثيوم قوية ويسحب الماء من أي دلو.</p>
       
@@ -402,7 +496,7 @@
           <div class="old-price">9,200 دج</div>
           <div class="current-price">7,950 دج</div>
         </div>
-        <span class="discount-tag">تخفيض محدود</span>
+        <span class="discount-tag">تخفيض خاص</span>
       </div>
 
       <br>
@@ -410,43 +504,40 @@
     </div>
 
     <div class="product-visual">
-      <!-- هنا تظهر صورة المنتج -->
-      <img src="product.jpg" alt="مسدس الغسيل اللاسلكي Pelifish">
+      <div class="main-img-container">
+        <!-- الصورة الرئيسية للمنتج -->
+        <img id="mainProductImg" src="product.jpg" alt="مسدس الغسيل اللاسلكي Pelifish" onerror="this.src='https://placehold.co/600x450/0d1326/00d2ff?text=ضع+صورة+product.jpg+هنا'">
+      </div>
+      
+      <!-- معرض الصور المصغرة (تقدر تحط حتى 3 صور: product.jpg, product2.jpg, product3.jpg) -->
+      <div class="thumbnails">
+        <img src="product.jpg" class="thumb active" onclick="changeImage(this)" onerror="this.style.display='none'">
+        <img src="product2.jpg" class="thumb" onclick="changeImage(this)" onerror="this.style.display='none'">
+        <img src="product3.jpg" class="thumb" onclick="changeImage(this)" onerror="this.style.display='none'">
+      </div>
     </div>
   </section>
 
-  <!-- قسم الفيديو التوضيحي -->
-  <section class="video-section">
-    <h2 class="section-title">شاهد قوة الأداء <span>على أرض الواقع</span></h2>
-    <p class="section-subtitle">فيديو يوضح قوة ضغط المياه وسهولة التركيب والاستخدام</p>
-    <div class="video-wrapper">
-      <!-- هنا يظهر فيديو المنتج -->
-      <video controls playsinline poster="product.jpg">
-        <source src="video.mp4" type="video/mp4">
-        متصفحك لا يدعم تشغيل الفيديو.
-      </video>
-    </div>
-  </section>
-
-  <!-- المميزات ومحتويات الحقيبة -->
+  <!-- المميزات -->
   <section class="features">
-    <h2 class="section-title" style="text-align:center;">لماذا تختار <span>Pelifish</span>؟</h2>
+    <h2 class="section-title">لماذا تختار <span>Pelifish</span>؟</h2>
+    <p class="section-subtitle">أداء قوي وتصميم عملي يغنيك عن محطات الغسيل المكلفة</p>
     <div class="grid-3">
       <div class="card">
         <h3>⚡ حرية تامة بدون كابلات</h3>
         <p>يعمل ببطارية ليثيوم قابلة للشحن، مما يسمح لك بغسل سيارتك في أي مكان أمام المنزل أو في السفر.</p>
       </div>
       <div class="card">
-        <h3>💦 يسحب الماء من أي مصدر</h3>
+        <h3>💦 يسحب الماء من أي دلو</h3>
         <p>مزود بخرطوم طوله 5 أمتار مع فلتر لتنقية الشوائب، يسحب الماء مباشرة من الدلو أو القارورة.</p>
       </div>
       <div class="card">
         <h3>🫧 قارورة رغوة + رؤوس متعددة</h3>
-        <p>يأتي مع علبة خاصة بصابون الغسيل (الفوم) ورأسين للرش: رش مركز لإزالة الأوساخ الصعبة ورش واسع للشطف.</p>
+        <p>يأتي مع علبة خاصة بصابون الغسيل (الفوم) ورأسين للرش: رش مركز للأوساخ الصعبة ورش واسع للشطف.</p>
       </div>
       <div class="card">
         <h3>🧰 حقيبة حمل متكاملة</h3>
-        <p>جميع القطع منظمة داخل حقيبة صلبة وأنيقة تحفظ الجهاز وملحقاته من الضياع أو الكسر.</p>
+        <p>جميع القطع منظمة داخل حقيبة صلبة تحفظ الجهاز وملحقاته من الضياع أو الكسر.</p>
       </div>
     </div>
   </section>
@@ -454,50 +545,234 @@
   <!-- استمارة الطلب -->
   <section class="order-section" id="order">
     <div class="order-card">
-      <h2 class="section-title" style="text-align:center;">إتمام الطلب السريع</h2>
-      <p class="section-subtitle" style="text-align:center;">املأ معلوماتك وسنتصل بك لتأكيد الطلب قبل الإرسال</p>
+      <h2 class="section-title">إتمام الطلب السريع</h2>
+      <p class="section-subtitle">املأ معلوماتك وسيتم تحويلك مباشرة لتأكيد الطلب على واتساب</p>
 
-      <form id="orderForm">
+      <!-- معاينة المنتج وصورته داخل بطاقة الطلب -->
+      <div class="order-product-preview">
+        <img src="product.jpg" alt="Pelifish" onerror="this.src='https://placehold.co/150x150/0d1326/00d2ff?text=Pelifish'">
+        <div class="order-product-info">
+          <h4>مسدس الغسيل اللاسلكي Pelifish (بالحقيبة)</h4>
+          <span>7,950 دج</span>
+        </div>
+      </div>
+
+      <form id="orderForm" novalidate>
         <div class="form-group">
           <label>الاسم واللقب الكامل *</label>
-          <input type="text" id="fullName" placeholder="مثال: محمد رضا" required>
+          <input type="text" id="fullName" placeholder="أدخل اسمك الكامل" required>
+          <div class="error-msg" id="nameError">يرجى إدخال الاسم الكامل</div>
         </div>
 
         <div class="form-group">
           <label>رقم الهاتف *</label>
           <input type="tel" id="phone" placeholder="مثال: 0775571470" required>
+          <div class="error-msg" id="phoneError">يرجى إدخال رقم هاتف صحيح مكون من 10 أرقام</div>
         </div>
 
         <div class="form-group">
-          <label>الولاية *</label>
+          <label>الولاية (58 ولاية) *</label>
           <select id="wilaya" required>
             <option value="">-- اختر ولايتك --</option>
-            <option value="09 - البليدة">09 - البليدة (توصيل سريع)</option>
-            <option value="16 - الجزائر العاصمة">16 - الجزائر العاصمة</option>
-            <option value="31 - وهران">31 - وهران</option>
-            <option value="25 - قسنطينة">25 - قسنطينة</option>
-            <option value="19 - سطيف">19 - سطيف</option>
-            <option value="42 - تيبازة">42 - تيبازة</option>
-            <option value="44 - عين الدفلى">44 - عين الدفلى</option>
-            <option value="26 - المدية">26 - المدية</option>
-            <option value="15 - تيزي وزو">15 - تيزي وزو</option>
-            <option value="06 - بجاية">06 - بجاية</option>
-            <option value="23 - عنابة">23 - عنابة</option>
+            <option value="01 - أدرار">01 - أدرار</option>
+            <option value="02 - الشلف">02 - الشلف</option>
+            <option value="03 - الأغواط">03 - الأغواط</option>
+            <option value="04 - أم البواقي">04 - أم البواقي</option>
             <option value="05 - باتنة">05 - باتنة</option>
+            <option value="06 - بجاية">06 - بجاية</option>
+            <option value="07 - بسكرة">07 - بسكرة</option>
+            <option value="08 - بشار">08 - بشار</option>
+            <option value="09 - البليدة">09 - البليدة</option>
+            <option value="10 - البويرة">10 - البويرة</option>
+            <option value="11 - تمنراست">11 - تمنراست</option>
+            <option value="12 - تبسة">12 - تبسة</option>
             <option value="13 - تلمسان">13 - تلمسان</option>
-            <option value="ولاية أخرى">ولاية أخرى (توصيل لـ 58 ولاية)</option>
+            <option value="14 - تيارت">14 - تيارت</option>
+            <option value="15 - تيزي وزو">15 - تيزي وزو</option>
+            <option value="16 - الجزائر العاصمة">16 - الجزائر العاصمة</option>
+            <option value="17 - الجلفة">17 - الجلفة</option>
+            <option value="18 - جيجل">18 - جيجل</option>
+            <option value="19 - سطيف">19 - سطيف</option>
+            <option value="20 - سعيدة">20 - سعيدة</option>
+            <option value="21 - سكيكدة">21 - سكيكدة</option>
+            <option value="22 - سيدي بلعباس">22 - سيدي بلعباس</option>
+            <option value="23 - عنابة">23 - عنابة</option>
+            <option value="24 - قالمة">24 - قالمة</option>
+            <option value="25 - قسنطينة">25 - قسنطينة</option>
+            <option value="26 - المدية">26 - المدية</option>
+            <option value="27 - مستغانم">27 - مستغانم</option>
+            <option value="28 - المسيلة">28 - المسيلة</option>
+            <option value="29 - معسكر">29 - معسكر</option>
+            <option value="30 - ورقلة">30 - ورقلة</option>
+            <option value="31 - وهران">31 - وهران</option>
+            <option value="32 - البيض">32 - البيض</option>
+            <option value="33 - إليزي">33 - إليزي</option>
+            <option value="34 - برج بوعريريج">34 - برج بوعريريج</option>
+            <option value="35 - بومرداس">35 - بومرداس</option>
+            <option value="36 - الطارف">36 - الطارف</option>
+            <option value="37 - تندوف">37 - تندوف</option>
+            <option value="38 - تيسمسيلت">38 - تيسمسيلت</option>
+            <option value="39 - الوادي">39 - الوادي</option>
+            <option value="40 - خنشلة">40 - خنشلة</option>
+            <option value="41 - سوق أهراس">41 - سوق أهراس</option>
+            <option value="42 - تيبازة">42 - تيبازة</option>
+            <option value="43 - ميلة">43 - ميلة</option>
+            <option value="44 - عين الدفلى">44 - عين الدفلى</option>
+            <option value="45 - النعامة">45 - النعامة</option>
+            <option value="46 - عين تموشنت">46 - عين تموشنت</option>
+            <option value="47 - غرداية">47 - غرداية</option>
+            <option value="48 - غليزان">48 - غليزان</option>
+            <option value="49 - تيميمون">49 - تيميمون</option>
+            <option value="50 - برج باجي مختار">50 - برج باجي مختار</option>
+            <option value="51 - أولاد جلال">51 - أولاد جلال</option>
+            <option value="52 - بني عباس">52 - بني عباس</option>
+            <option value="53 - عين صالح">53 - عين صالح</option>
+            <option value="54 - عين قزام">54 - عين قزام</option>
+            <option value="55 - تقرت">55 - تقرت</option>
+            <option value="56 - جانت">56 - جانت</option>
+            <option value="57 - المغير">57 - المغير</option>
+            <option value="58 - المنيعة">58 - المنيعة</option>
           </select>
+          <div class="error-msg" id="wilayaError">يرجى اختيار الولاية</div>
         </div>
 
         <div class="form-group">
-          <label>البلدية / العنوان *</label>
+          <label>البلدية / العنوان الدقيق *</label>
           <input type="text" id="commune" placeholder="مثال: العفرون" required>
+          <div class="error-msg" id="communeError">يرجى إدخال اسم البلدية</div>
         </div>
 
         <div class="form-group">
-          <label>نوع التوصيل *</label>
+          <label>الكمية المطلوبة</label>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" onclick="changeQty(-1)">-</button>
+            <span class="qty-value" id="qtyDisplay">1</span>
+            <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>طريقة التوصيل *</label>
           <select id="deliveryType" onchange="updateTotal()">
             <option value="600">توصيل إلى باب المنزل (+600 دج)</option>
             <option value="400">توصيل إلى مكتب شركة الشحن - Stop Desk (+400 دج)</option>
           </select>
+        </div>
 
+        <div class="summary-box">
+          <div class="summary-row">
+            <span>سعر المنتج (<span id="summaryQty">1</span> قطعة):</span>
+            <span id="subtotalCost">7,950 دج</span>
+          </div>
+          <div class="summary-row">
+            <span>تكلفة التوصيل:</span>
+            <span id="deliveryCost">600 دج</span>
+          </div>
+          <div class="summary-total">
+            <span>المجموع الكلي للدفع:</span>
+            <span id="totalCost">8,550 دج</span>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          📲 إرسال الطلب عبر واتساب الآن
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 جميع الحقوق محفوظة لمتجر Vir Mart | للطلب المباشر: 0775571470</p>
+  </footer>
+
+  <script>
+    const UNIT_PRICE = 7950;
+    const WHATSAPP_PHONE = "213775571470"; // الرقم بصيغة دولية بدون صفر
+    let quantity = 1;
+
+    // تغيير الصورة الرئيسية عند الضغط على الصور المصغرة
+    function changeImage(thumbElement) {
+      document.getElementById("mainProductImg").src = thumbElement.src;
+      document.querySelectorAll(".thumb").forEach(img => img.classList.remove("active"));
+      thumbElement.classList.add("active");
+    }
+
+    // تغيير الكمية
+    function changeQty(delta) {
+      quantity += delta;
+      if (quantity < 1) quantity = 1;
+      if (quantity > 10) quantity = 10;
+      document.getElementById("qtyDisplay").textContent = quantity;
+      document.getElementById("summaryQty").textContent = quantity;
+      updateTotal();
+    }
+
+    // تحديث الحساب التلقائي
+    function updateTotal() {
+      const delivery = parseInt(document.getElementById("deliveryType").value, 10);
+      const subtotal = UNIT_PRICE * quantity;
+      const total = subtotal + delivery;
+
+      document.getElementById("subtotalCost").textContent = subtotal.toLocaleString("en-US") + " دج";
+      document.getElementById("deliveryCost").textContent = delivery.toLocaleString("en-US") + " دج";
+      document.getElementById("totalCost").textContent = total.toLocaleString("en-US") + " دج";
+    }
+
+    // إرسال الطلب إلى واتساب بطريقة مضمونة تعمل على جميع الهواتف
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // إخفاء رسائل الخطأ السابقة
+      document.querySelectorAll(".error-msg").forEach(el => el.style.display = "none");
+
+      const name = document.getElementById("fullName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const wilaya = document.getElementById("wilaya").value;
+      const commune = document.getElementById("commune").value.trim();
+
+      let hasError = false;
+
+      if (name.length < 3) {
+        document.getElementById("nameError").style.display = "block";
+        hasError = true;
+      }
+      if (phone.length < 9) {
+        document.getElementById("phoneError").style.display = "block";
+        hasError = true;
+      }
+      if (!wilaya) {
+        document.getElementById("wilayaError").style.display = "block";
+        hasError = true;
+      }
+      if (commune.length < 2) {
+        document.getElementById("communeError").style.display = "block";
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      const deliverySelect = document.getElementById("deliveryType");
+      const deliveryText = deliverySelect.options[deliverySelect.selectedIndex].text;
+      const total = document.getElementById("totalCost").textContent;
+
+      const rawMessage = 
+        `السلام عليكم متجر Vir Mart، أريد تأكيد طلبي:\n\n` +
+        `🛒 *المنتج:* مسدس الغسيل اللاسلكي Pelifish\n` +
+        `🔢 *الكمية:* ${quantity}\n` +
+        `👤 *الاسم الكامل:* ${name}\n` +
+        `📱 *رقم الهاتف:* ${phone}\n` +
+        `📍 *الولاية:* ${wilaya}\n` +
+        `🏠 *البلدية:* ${commune}\n` +
+        `🚚 *التوصيل:* ${deliveryText}\n` +
+        `💰 *المجموع الكلي:* ${total}`;
+
+      const encodedMessage = encodeURIComponent(rawMessage);
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodedMessage}`;
+
+      // التوجيه المباشر يضمن فتح واتساب بدون حظر من المتصفح
+      window.location.href = whatsappUrl;
+    });
+  </script>
+
+</body>
+</html>
