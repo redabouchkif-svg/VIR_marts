@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مسدس الغسيل اللاسلكي Pelifish | متجر Vir Mart</title>
+  <title>مسدس الغسيل اللاسلكي Pelifish Pro | متجر Vir Mart</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #050814;
-      --bg-surface: #0b1124;
-      --bg-card: rgba(15, 23, 46, 0.78);
-      --bg-card-hover: rgba(22, 34, 66, 0.95);
+      --bg-dark: #030611;
+      --bg-surface: #0a1024;
+      --bg-card: rgba(13, 21, 46, 0.72);
       --primary: #2563eb;
-      --primary-light: #3b82f6;
       --accent: #00d2ff;
-      --accent-glow: rgba(0, 210, 255, 0.32);
+      --accent-2: #60a5fa;
+      --accent-glow: rgba(0, 210, 255, 0.4);
       --danger: #ef4444;
+      --warning: #f59e0b;
       --success: #10b981;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.09);
-      --border-accent: rgba(0, 210, 255, 0.35);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(0, 210, 255, 0.45);
     }
 
     * {
@@ -38,32 +38,100 @@
 
     body {
       background-color: var(--bg-dark);
-      background-image:
-        radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.14), transparent 35%),
-        radial-gradient(circle at 85% 30%, rgba(0, 210, 255, 0.08), transparent 35%);
       color: var(--text-main);
       line-height: 1.65;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* الشريط العلوي */
+    /* خلفية نيون متحركة بأسلوب أبل */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      opacity: 0.35;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 420px;
+      height: 420px;
+      background: #2563eb;
+      top: -120px;
+      right: -100px;
+    }
+
+    .orb-2 {
+      width: 360px;
+      height: 360px;
+      background: #00d2ff;
+      bottom: 15%;
+      left: -120px;
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: #1d4ed8;
+      bottom: -80px;
+      right: 25%;
+      animation-delay: -7s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 50px) scale(1.15); }
+    }
+
+    /* شريط الاستعجال والعداد التنازلي العلوي */
     .top-bar {
-      background: linear-gradient(90deg, #1d4ed8, #0284c7, #1d4ed8);
+      background: linear-gradient(90deg, #0f172a, #1d4ed8, #0284c7, #0f172a);
+      background-size: 200% 100%;
+      animation: gradientMove 6s linear infinite;
       text-align: center;
-      padding: 10px 15px;
+      padding: 10px 14px;
       font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.2px;
+      font-weight: 800;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(0, 210, 255, 0.3);
     }
 
-    /* الهيدر */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .top-timer {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 2px 12px;
+      border-radius: 50px;
+      color: #fde047;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    /* الهيدر الزجاجي */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 14px 6%;
-      background: rgba(5, 8, 20, 0.86);
-      backdrop-filter: blur(14px);
+      background: rgba(3, 6, 17, 0.78);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
@@ -71,9 +139,9 @@
     }
 
     .logo {
-      font-size: 1.65rem;
+      font-size: 1.7rem;
       font-weight: 900;
-      background: linear-gradient(90deg, #ffffff, var(--accent));
+      background: linear-gradient(90deg, #fff, var(--accent), #60a5fa);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-decoration: none;
@@ -90,7 +158,7 @@
       color: var(--text-muted);
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: color 0.2s;
     }
 
@@ -99,45 +167,80 @@
     }
 
     .nav-btn {
+      position: relative;
+      overflow: hidden;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: #fff;
       padding: 9px 22px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 800;
-      font-size: 0.95rem;
-      box-shadow: 0 0 20px var(--accent-glow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 0.92rem;
+      box-shadow: 0 0 22px var(--accent-glow);
+      transition: transform 0.2s;
     }
 
     .nav-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 26px var(--accent-glow);
+      transform: scale(1.06);
     }
 
-    /* حاوية عامة */
+    /* تأثير اللمعان على الأزرار */
+    .shimmer-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shimmer-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-25deg);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -120%; }
+      55%, 100% { left: 160%; }
+    }
+
     .container {
-      max-width: 1160px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 5%;
     }
 
+    /* أنيميشن الظهور عند التمرير */
+    .reveal {
+      opacity: 0;
+      transform: translateY(38px) scale(0.97);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
     /* القسم الرئيسي Hero */
     .hero {
-      padding: 48px 0 36px;
+      padding: 50px 0 40px;
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 44px;
       align-items: center;
     }
 
-    .badge {
+    .live-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(0, 210, 255, 0.1);
-      border: 1px solid var(--border-accent);
-      color: var(--accent);
+      gap: 9px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
       padding: 6px 16px;
       border-radius: 50px;
       font-size: 0.85rem;
@@ -145,113 +248,188 @@
       margin-bottom: 16px;
     }
 
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8);
+      animation: pulseRed 1.5s infinite;
+    }
+
+    @keyframes pulseRed {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.75); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
     .hero h1 {
-      font-size: 2.55rem;
+      font-size: 2.75rem;
       font-weight: 900;
-      line-height: 1.22;
+      line-height: 1.2;
       margin-bottom: 16px;
     }
 
     .hero h1 span {
-      background: linear-gradient(90deg, var(--accent), #60a5fa);
+      background: linear-gradient(90deg, var(--accent), #60a5fa, #fff);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: textShine 4s linear infinite;
+    }
+
+    @keyframes textShine {
+      to { background-position: 200% center; }
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-bottom: 24px;
-    }
-
-    .price-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    .current-price {
-      font-size: 2.1rem;
-      font-weight: 900;
-      color: var(--accent);
-      line-height: 1.1;
-    }
-
-    .old-price {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      text-decoration: line-through;
-    }
-
-    .discount-tag {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 10px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      font-size: 1.06rem;
       margin-bottom: 22px;
     }
 
+    /* صندوق السعر + الندرة */
+    .price-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 35px rgba(0, 210, 255, 0.12);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .current-price {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .old-price {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    .discount-pill {
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 900;
+      padding: 6px 14px;
+      border-radius: 50px;
+      animation: bounceSoft 2.2s infinite;
+    }
+
+    @keyframes bounceSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* شريط المخزون المتبقي */
+    .stock-bar-wrap {
+      font-size: 0.86rem;
+      color: #fde68a;
+      font-weight: 700;
+    }
+
+    .stock-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .stock-fill {
+      width: 82%;
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      border-radius: 50px;
+      animation: stockPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes stockPulse {
+      from { opacity: 0.8; }
+      to { opacity: 1; }
+    }
+
     .cta-primary {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      flex: 1;
-      min-width: 240px;
-      max-width: 390px;
+      width: 100%;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: #fff;
-      font-size: 1.12rem;
-      font-weight: 800;
-      padding: 15px 24px;
-      border-radius: 14px;
+      font-size: 1.18rem;
+      font-weight: 900;
+      padding: 17px 26px;
+      border-radius: 16px;
       text-decoration: none;
-      box-shadow: 0 10px 30px var(--accent-glow);
+      box-shadow: 0 12px 35px var(--accent-glow);
       transition: transform 0.25s, box-shadow 0.25s;
     }
 
     .cta-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 36px rgba(0, 210, 255, 0.45);
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 18px 45px rgba(0, 210, 255, 0.55);
     }
 
     .trust-strip {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
+      margin-top: 16px;
       font-size: 0.88rem;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .trust-strip span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* معرض صور المنتج */
+    /* بطاقة صورة المنتج العائمة ثلاثية الأبعاد */
     .product-visual {
-      background: radial-gradient(circle at center, rgba(37, 99, 235, 0.22), var(--bg-surface));
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 20px;
+      position: relative;
+      background: radial-gradient(circle at center, rgba(37, 99, 235, 0.28), rgba(10, 16, 36, 0.9));
+      border: 1px solid var(--border-glow);
+      border-radius: 28px;
+      padding: 22px;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 210, 255, 0.14);
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: rgba(3, 6, 17, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glow);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 7px 14px;
+      border-radius: 50px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+      z-index: 2;
+      animation: floatTag 4s ease-in-out infinite;
+    }
+
+    .tag-top { top: 16px; right: 16px; color: var(--accent); }
+    .tag-bottom { bottom: 96px; left: 16px; animation-delay: -2s; color: #34d399; }
+
+    @keyframes floatTag {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
     }
 
     .main-img-container {
@@ -262,55 +440,104 @@
       justify-content: center;
       overflow: hidden;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.02);
     }
 
     .main-img-container img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.65));
-      transition: transform 0.35s ease;
+      filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.75));
+      animation: floatProduct 5s ease-in-out infinite;
       cursor: zoom-in;
     }
 
-    .main-img-container img:hover {
-      transform: scale(1.03);
+    @keyframes floatProduct {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
     }
 
     .thumbnails {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       margin-top: 16px;
     }
 
     .thumb {
-      width: 66px;
-      height: 66px;
+      width: 68px;
+      height: 68px;
       border-radius: 12px;
       border: 2px solid var(--border);
       object-fit: cover;
       cursor: pointer;
       opacity: 0.65;
-      transition: 0.2s;
+      transition: 0.25s;
       background: var(--bg-dark);
     }
 
     .thumb.active, .thumb:hover {
       border-color: var(--accent);
       opacity: 1;
-      transform: scale(1.06);
+      transform: scale(1.08);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    /* شريط الأرقام والإحصائيات بأسلوب أبل */
+    .stats-bar {
+      margin: 26px 0 55px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .stat-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 14px;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .stat-num {
+      font-size: 1.9rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 700;
     }
 
     /* عناوين الأقسام */
     .section-header {
       text-align: center;
-      margin-bottom: 34px;
+      margin-bottom: 36px;
+    }
+
+    .section-pill {
+      display: inline-block;
+      background: rgba(0, 210, 255, 0.1);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 10px;
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 900;
       margin-bottom: 8px;
     }
@@ -324,70 +551,38 @@
       font-size: 1rem;
     }
 
-    /* قسم العرض المرئي (الفيديو + صورة المنشور مباشرة) */
-    .media-showcase {
-      padding: 56px 0;
+    /* قسم العرض السينمائي للفيديو الجديد */
+    .cinema-section {
+      padding: 50px 0;
     }
 
-    .media-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .media-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    }
-
-    .media-card:hover {
-      border-color: var(--border-accent);
-      box-shadow: 0 14px 40px rgba(0, 210, 255, 0.12);
-    }
-
-    .media-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .media-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 210, 255, 0.1);
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 50px;
-    }
-
-    .media-hint {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .video-frame-box {
+    .cinema-frame {
       position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #000;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.55);
-      margin: auto 0;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, var(--accent), var(--primary), #60a5fa, var(--accent));
+      background-size: 300% 300%;
+      animation: borderFlow 5s ease infinite;
+      box-shadow: 0 25px 70px rgba(0, 210, 255, 0.22);
     }
 
-    .video-frame-box iframe {
+    @keyframes borderFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .cinema-inner {
+      background: #000;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16 / 9;
+    }
+
+    .cinema-inner iframe {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -395,112 +590,174 @@
       border: 0;
     }
 
-    .post-image-box {
-      position: relative;
-      width: 100%;
-      flex: 1;
-      min-height: 290px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #070c1c;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-in;
+    /* قسم محتويات العلبة بالأنيميشن (What's in the Box) */
+    .box-section {
+      padding: 65px 0;
     }
 
-    .post-image-box img {
-      width: 100%;
-      height: 100%;
-      max-height: 390px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
-    }
-
-    .post-image-box:hover img {
-      transform: scale(1.03);
-    }
-
-    .zoom-badge {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      background: rgba(5, 8, 20, 0.78);
-      backdrop-filter: blur(8px);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 50px;
-      border: 1px solid var(--border);
-      pointer-events: none;
-    }
-
-    /* المميزات */
-    .features {
-      padding: 50px 0;
-    }
-
-    .grid-4 {
+    .box-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
     }
 
-    .card {
+    .box-item {
+      position: relative;
       background: var(--bg-card);
       border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px 20px;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s, box-shadow 0.35s;
+    }
+
+    .box-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0, 210, 255, 0.16), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .box-item:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px rgba(0, 210, 255, 0.18);
+    }
+
+    .box-item:hover::before {
+      opacity: 1;
+    }
+
+    .box-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 16px;
       border-radius: 20px;
-      padding: 24px;
-      transition: 0.25s;
-    }
-
-    .card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-accent);
-      transform: translateY(-4px);
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: rgba(0, 210, 255, 0.1);
-      border: 1px solid rgba(0, 210, 255, 0.25);
+      background: linear-gradient(145deg, rgba(37, 99, 235, 0.25), rgba(0, 210, 255, 0.12));
+      border: 1px solid rgba(0, 210, 255, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 2rem;
+      animation: floatBoxIcon 3.8s ease-in-out infinite;
+    }
+
+    .box-item:nth-child(2) .box-icon { animation-delay: -0.6s; }
+    .box-item:nth-child(3) .box-icon { animation-delay: -1.2s; }
+    .box-item:nth-child(4) .box-icon { animation-delay: -1.8s; }
+    .box-item:nth-child(5) .box-icon { animation-delay: -2.4s; }
+    .box-item:nth-child(6) .box-icon { animation-delay: -3.0s; }
+
+    @keyframes floatBoxIcon {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(3deg); }
+    }
+
+    .box-qty {
+      display: inline-block;
+      background: rgba(0, 210, 255, 0.14);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 8px;
+    }
+
+    .box-item h3 {
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .box-item p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* آراء الزبائن (Social Proof) */
+    .reviews-section {
+      padding: 50px 0;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-glow);
+    }
+
+    .stars {
+      color: #facc15;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
       margin-bottom: 14px;
     }
 
-    .card h3 {
-      font-size: 1.12rem;
-      color: #fff;
-      margin-bottom: 8px;
+    .reviewer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    .verified {
+      color: #34d399;
       font-weight: 800;
     }
 
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.94rem;
-    }
-
-    /* قسم الطلب */
+    /* قسم الطلب الاحترافي */
     .order-section {
-      max-width: 700px;
-      margin: 40px auto 70px;
+      max-width: 720px;
+      margin: 45px auto 95px;
       padding: 0 5%;
     }
 
     .order-card {
       background: var(--bg-surface);
-      border: 1.5px solid var(--primary);
-      border-radius: 26px;
-      padding: 34px 28px;
-      box-shadow: 0 0 50px rgba(37, 99, 235, 0.2);
+      border: 2px solid var(--primary);
+      border-radius: 28px;
+      padding: 36px 28px;
+      box-shadow: 0 0 60px rgba(37, 99, 235, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .urgency-banner {
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
     }
 
     .order-product-preview {
@@ -515,8 +772,8 @@
     }
 
     .order-product-preview img {
-      width: 74px;
-      height: 74px;
+      width: 76px;
+      height: 76px;
       border-radius: 12px;
       object-fit: cover;
       background: #0d1326;
@@ -531,7 +788,7 @@
     .order-product-info span {
       color: var(--accent);
       font-weight: 900;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
     }
 
     .form-grid {
@@ -544,16 +801,11 @@
       margin-bottom: 16px;
     }
 
-    .form-group.full {
-      grid-column: 1 / -1;
-    }
-
     .form-group label {
       display: block;
       font-weight: 700;
       margin-bottom: 6px;
       font-size: 0.92rem;
-      color: #e2e8f0;
     }
 
     .form-group input,
@@ -572,7 +824,7 @@
     .form-group input:focus,
     .form-group select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.14);
+      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.16);
     }
 
     .qty-control {
@@ -595,7 +847,6 @@
       font-size: 1.25rem;
       font-weight: 900;
       cursor: pointer;
-      transition: 0.2s;
     }
 
     .qty-btn:hover {
@@ -611,11 +862,11 @@
     }
 
     .summary-box {
-      background: rgba(0, 210, 255, 0.05);
-      border: 1px dashed var(--border-accent);
+      background: rgba(0, 210, 255, 0.06);
+      border: 1px dashed var(--accent);
       border-radius: 16px;
       padding: 18px;
-      margin: 20px 0 24px;
+      margin: 18px 0 22px;
     }
 
     .summary-row {
@@ -634,7 +885,7 @@
     .summary-total {
       display: flex;
       justify-content: space-between;
-      font-size: 1.28rem;
+      font-size: 1.32rem;
       font-weight: 900;
       color: var(--accent);
       border-top: 1px solid var(--border);
@@ -644,16 +895,16 @@
 
     .submit-btn {
       width: 100%;
-      padding: 16px;
+      padding: 17px;
       border: none;
-      border-radius: 14px;
+      border-radius: 16px;
       background: linear-gradient(135deg, #25D366, #128C7E);
       color: #fff;
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 10px 26px rgba(37, 211, 102, 0.35);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.38);
+      transition: transform 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -661,8 +912,7 @@
     }
 
     .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(37, 211, 102, 0.45);
+      transform: scale(1.02);
     }
 
     .error-msg {
@@ -672,12 +922,103 @@
       display: none;
     }
 
-    /* نافذة تكبير الصورة Lightbox */
+    /* إشعارات الطلبات الحية (Social Proof Toast) */
+    .sales-toast {
+      position: fixed;
+      bottom: 84px;
+      right: 18px;
+      background: rgba(10, 16, 36, 0.95);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+      z-index: 1500;
+      transform: translateX(140%);
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      max-width: 310px;
+    }
+
+    .sales-toast.show {
+      transform: translateX(0);
+    }
+
+    .toast-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .toast-text {
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .toast-text strong {
+      color: var(--accent);
+    }
+
+    .toast-time {
+      display: block;
+      font-size: 0.74rem;
+      color: #34d399;
+      margin-top: 2px;
+    }
+
+    /* شريط الطلب العائم السفلي */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(3, 6, 17, 0.92);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-glow);
+      padding: 12px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1200;
+      transform: translateY(120%);
+      transition: transform 0.35s ease;
+    }
+
+    .sticky-cta.visible {
+      transform: translateY(0);
+    }
+
+    .sticky-price {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .sticky-btn {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      padding: 10px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 0.98rem;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    /* نافذة تكبير الصور */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(2, 6, 18, 0.92);
-      backdrop-filter: blur(8px);
+      background: rgba(2, 6, 18, 0.94);
+      backdrop-filter: blur(10px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -685,23 +1026,20 @@
       padding: 20px;
     }
 
-    .lightbox.open {
-      display: flex;
-    }
+    .lightbox.open { display: flex; }
 
     .lightbox img {
       max-width: 95%;
       max-height: 88vh;
       border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-glow);
     }
 
     .lightbox-close {
       position: absolute;
       top: 20px;
       left: 24px;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.14);
       color: #fff;
       border: none;
       width: 44px;
@@ -713,85 +1051,92 @@
 
     footer {
       text-align: center;
-      padding: 28px 5%;
+      padding: 28px 5% 85px;
       border-top: 1px solid var(--border);
       color: var(--text-muted);
       font-size: 0.9rem;
     }
 
     @media (max-width: 860px) {
-      .nav-link {
-        display: none;
-      }
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 32px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .hero-actions, .trust-strip {
-        justify-content: center;
-      }
-      .main-img-container {
-        height: 280px;
-      }
-      .media-grid {
-        grid-template-columns: 1fr;
-      }
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+      .nav-link { display: none; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 28px; }
+      .hero h1 { font-size: 2.05rem; }
+      .price-row, .trust-strip { justify-content: center; }
+      .main-img-container { height: 280px; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .form-grid { grid-template-columns: 1fr; }
+      .sales-toast { right: 10px; bottom: 76px; max-width: 270px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- خلفية النيون المتحركة -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- شريط الاستعجال بالعداد التنازلي -->
   <div class="top-bar">
-    🚀 متجر Vir Mart | توصيل سريع لـ 58 ولاية والدفع عند الاستلام
+    <span>🔥 عرض خاص ومحدود من متجر Vir Mart — ينتهي التخفيض خلال:</span>
+    <span class="top-timer" id="countdownTimer">02:47:19</span>
   </div>
 
   <header>
     <a href="#" class="logo">Vir Mart</a>
     <div class="nav-links">
-      <a href="#showcase" class="nav-link">الفيديو والمنشور</a>
-      <a href="#features" class="nav-link">المميزات</a>
-      <a href="#order" class="nav-btn">اطلب الآن</a>
+      <a href="#video" class="nav-link">الفيديو</a>
+      <a href="#in-the-box" class="nav-link">محتويات الحقيبة</a>
+      <a href="#reviews" class="nav-link">آراء الزبائن</a>
+      <a href="#order" class="nav-btn shimmer-btn">اطلب الآن</a>
     </div>
   </header>
 
   <main class="container">
-    <!-- القسم الرئيسي -->
+    <!-- القسم الرئيسي Hero -->
     <section class="hero">
-      <div>
-        <span class="badge">🔥 الأكثر طلباً في الجزائر</span>
-        <h1>مسدس الغسيل اللاسلكي <span>Pelifish</span> عالي الضغط</h1>
-        <p>اغسل سيارتك، دراجتك، حديقتك، وحتى المكيفات في دقائق وبدون الحاجة لكابلات الكهرباء أو الحنفية! يعمل ببطارية ليثيوم قوية ويسحب الماء مباشرة من أي دلو.</p>
+      <div class="reveal">
+        <div class="live-badge">
+          <span class="pulse-dot"></span>
+          <span>يشاهد هذا العرض الآن <strong id="liveViewers">23</strong> شخصاً</span>
+        </div>
 
-        <div class="price-box">
-          <div>
-            <div class="old-price">9,200 دج</div>
-            <div class="current-price">7,950 دج</div>
+        <h1>اغسل سيارتك كالمحترفين مع <span>Pelifish Pro</span> اللاسلكي</h1>
+        <p>وداعاً لطوابير محطات الغسيل والكابلات المزعجة! قوة ضغط مذهلة، بطارية ليثيوم جبارة، ويسحب الماء مباشرة من أي دلو ليمنحك لمعاناً مثالياً في 5 دقائق.</p>
+
+        <div class="price-card">
+          <div class="price-row">
+            <div>
+              <span class="current-price">7,950 دج</span>
+              <span class="old-price">9,200 دج</span>
+            </div>
+            <span class="discount-pill">تخفيض -14% 🔥</span>
           </div>
-          <span class="discount-tag">وفر 1,250 دج</span>
+          <div class="stock-bar-wrap">
+            ⚠️ تبقى <strong>7 قطع فقط</strong> في المخزون بهذا السعر الترويجي!
+            <div class="stock-track"><div class="stock-fill"></div></div>
+          </div>
         </div>
 
-        <div class="hero-actions">
-          <a href="#order" class="cta-primary">🛒 اطلب الآن — الدفع عند الاستلام</a>
-        </div>
+        <a href="#order" class="cta-primary shimmer-btn">🛒 اطلب الآن — الدفع عند الاستلام</a>
 
         <div class="trust-strip">
-          <span>✅ توصيل لـ 58 ولاية</span>
-          <span>✅ فحص المنتج عند الاستلام</span>
-          <span>✅ حقيبة متكاملة</span>
+          <span>✅ توصيل سريع لـ 58 ولاية</span>
+          <span>✅ افتح العلبة وتأكد قبل الدفع</span>
+          <span>✅ ضمان الجودة</span>
         </div>
       </div>
 
-      <div class="product-visual">
+      <div class="product-visual reveal">
+        <span class="floating-tag tag-top">⚡ بطارية ليثيوم قوية</span>
+        <span class="floating-tag tag-bottom">🫧 قارورة رغوة مجاناً</span>
+
         <div class="main-img-container">
-          <img id="mainProductImg" src="product.jpg" alt="مسدس الغسيل اللاسلكي Pelifish" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/600x450/0b1124/00d2ff?text=ارفع+صورة+product.jpg'">
+          <img id="mainProductImg" src="product.jpg" alt="مسدس الغسيل اللاسلكي Pelifish" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/600x450/0a1024/00d2ff?text=product.jpg'">
         </div>
+
         <div class="thumbnails">
           <img src="product.jpg" class="thumb active" onclick="changeImage(this)" onerror="this.style.display='none'">
           <img src="product2.jpg" class="thumb" onclick="changeImage(this)" onerror="this.style.display='none'">
@@ -800,52 +1145,451 @@
       </div>
     </section>
 
-    <!-- قسم العرض المرئي: الفيديو + صورة المنشور مباشرة -->
-    <section class="media-showcase" id="showcase">
+    <!-- شريط الإحصائيات السريعة -->
+    <section class="stats-bar reveal">
+      <div class="stat-item">
+        <div class="stat-num">5 دقائق</div>
+        <div class="stat-label">لغسيل سيارة كاملة</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5 أمتار</div>
+        <div class="stat-label">طول خرطوم السحب</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">58 ولاية</div>
+        <div class="stat-label">توصيل سريع ومضمون</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4.9 ★</div>
+        <div class="stat-label">تقييم الزبائن في الجزائر</div>
+      </div>
+    </section>
+
+    <!-- قسم الفيديو السينمائي -->
+    <section class="cinema-section reveal" id="video">
       <div class="section-header">
-        <h2 class="section-title">شاهد <span>قوة الضغط</span> مباشرة</h2>
-        <p class="section-subtitle">الفيديو الإعلاني ومنشور العرض التفصيلي للمنتج مباشرة على الصفحة</p>
+        <span class="section-pill">🎬 تجربة واقعية</span>
+        <h2 class="section-title">شاهد <span>قوة الضغط</span> بعينيك</h2>
+        <p class="section-subtitle">تصميم متين، ضغط ماء يزيل أصعب الأوساخ عن العجلات والهيكل بكل سهولة</p>
       </div>
 
-      <div class="media-grid">
-        <!-- الفيديو الإعلاني -->
-        <div class="media-card">
-          <div class="media-card-header">
-            <span class="media-tag">🎬 الفيديو الإعلاني</span>
-            <span class="media-hint">تشغيل تلقائي — اضغط لتفعيل الصوت</span>
-          </div>
-          <div class="video-frame-box">
-            <iframe
-              src="https://www.youtube.com/embed/P5eK2twv1iU?autoplay=1&mute=1&loop=1&playlist=P5eK2twv1iU&rel=0"
-              title="إعلان مسدس الغسيل اللاسلكي Pelifish"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
-        <!-- صورة المنشور مباشرة -->
-        <div class="media-card">
-          <div class="media-card-header">
-            <span class="media-tag">🖼️ منشور العرض</span>
-            <span class="media-hint">اضغط على الصورة للتكبير</span>
-          </div>
-          <div class="post-image-box" onclick="openLightbox(document.getElementById('postImg').src)">
-            <img id="postImg" src="post.jpg" alt="منشور مسدس الغسيل اللاسلكي Pelifish" onerror="this.src='https://placehold.co/600x450/0b1124/00d2ff?text=ارفع+صورة+المنشور+باسم+post.jpg'">
-            <span class="zoom-badge">🔍 تكبير الصورة</span>
-          </div>
+      <div class="cinema-frame">
+        <div class="cinema-inner">
+          <iframe
+            src="https://www.youtube.com/embed/epLYr6KvWww?autoplay=1&mute=1&loop=1&playlist=epLYr6KvWww&rel=0"
+            title="فيديو مسدس الغسيل اللاسلكي Pelifish"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </section>
 
-    <!-- المميزات -->
-    <section class="features" id="features">
-      <div class="section-header">
-        <h2 class="section-title">لماذا تختار <span>Pelifish</span>؟</h2>
-        <p class="section-subtitle">أداء عملي وقوة ضغط تغنيك عن محطات الغسيل المكلفة</p>
+    <!-- قسم محتويات الحقيبة بالأنيميشن (What's in the Box) -->
+    <section class="box-section" id="in-the-box">
+      <div class="section-header reveal">
+        <span class="section-pill">📦 ماذا يوجد داخل الحقيبة؟</span>
+        <h2 class="section-title">كل ما تحتاجه في <span>حقيبة واحدة متكاملة</span></h2>
+        <p class="section-subtitle">تأتيك جميع القطع منظمة داخل حقيبة صلبة فاخرة جاهزة للاستعمال الفوري</p>
       </div>
-      <div class="grid-4">
-        <div class="card">
-          <div class="card-icon">⚡</div>
-          <h3>حرية تامة بدون كابلات</h3>
-          <p>يعمل ببطارية ليثيوم قابلة للشحن، مما يسمح لك بغسل سيارتك في أي مكان أمام المنزل أو في السفر
+
+      <div class="box-grid">
+        <div class="box-item reveal">
+          <div class="box-icon">🔫</div>
+          <span class="box-qty">1 × القطعة الأساسية</span>
+          <h3>مسدس الضغط Pelifish</h3>
+          <p>محرك نحاسي قوي بقبضة مريحة مانعة للانزلاق وضغط ماء مركز.</p>
+        </div>
+
+        <div class="box-item reveal">
+          <div class="box-icon">🔋</div>
+          <span class="box-qty">1 × طاقة عالية</span>
+          <h3>بطارية ليثيوم + شاحن</h3>
+          <p>بطارية قابلة للشحن تدوم طويلاً مع شاحن سريع مرفق في العلبة.</p>
+        </div>
+
+        <div class="box-item reveal">
+          <div class="box-icon">〰️</div>
+          <span class="box-qty">طول 5 أمتار</span>
+          <h3>خرطوم سحب + فلتر</h3>
+          <p>يسحب الماء من أي دلو أو قارورة مع فلتر ينقي الماء من الشوائب.</p>
+        </div>
+
+        <div class="box-item reveal">
+          <div class="box-icon">🫧</div>
+          <span class="box-qty">هدية مرفقة</span>
+          <h3>قارورة الرغوة (الفوم)</h3>
+          <p>املأها بشامبو السيارات لتغطية سيارتك برغوة كثيفة كمحطات الغسيل.</p>
+        </div>
+
+        <div class="box-item reveal">
+          <div class="box-icon">🎯</div>
+          <span class="box-qty">2 × رؤوس نحاسية</span>
+          <h3>فوهات رش متعددة</h3>
+          <p>رأس أحمر للرش المركز لإزالة الطين، ورأس أبيض للرش الواسع والشطف.</p>
+        </div>
+
+        <div class="box-item reveal">
+          <div class="box-icon">🧰</div>
+          <span class="box-qty">حماية كاملة</span>
+          <h3>حقيبة حمل صلبة</h3>
+          <p>تحفظ الجهاز وجميع ملحقاته مرتبة وسهلة التخزين في صندوق السيارة.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- آراء الزبائن -->
+    <section class="reviews-section" id="reviews">
+      <div class="section-header reveal">
+        <span class="section-pill">⭐ ثقة الزبائن</span>
+        <h2 class="section-title">ماذا يقول <span>زبائن Vir Mart</span>؟</h2>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"والله ما شاء الله، جربته على سيارتي في الدار، الضغط تاعو هايل وينحي الغبار والطين من العجلات بسهولة. التوصيل وصلني في 24 ساعة."</p>
+          <div class="reviewer">
+            <span>أمين ب. — البليدة</span>
+            <span class="verified">✔ مشتري مؤكد</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"أحسن حاجة فيه الباتري وعلبة الصابون، مابقيتش نستنى في لافاج. والحقيبة تاعو تحكم كلش منظم في الكوفر تاع الطوموبيل."</p>
+          <div class="reviewer">
+            <span>ياسين م. — الجزائر العاصمة</span>
+            <span class="verified">✔ مشتري مؤكد</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"شريتو باش نغسل بيه الدراجة النارية والمكيف في الصيف، عملي جداً وما يستهلكش بزاف ماء. يعطيكم الصحة Vir Mart."</p>
+          <div class="reviewer">
+            <span>كريم د. — وهران</span>
+            <span class="verified">✔ مشتري مؤكد</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- استمارة الطلب -->
+  <section class="order-section reveal" id="order">
+    <div class="order-card">
+      <div class="urgency-banner">
+        ⏳ الكمية محدودة جداً — احجز قطعتك الآن قبل عودة السعر إلى 9,200 دج
+      </div>
+
+      <div class="section-header" style="margin-bottom: 22px;">
+        <h2 class="section-title">إتمام الطلب السريع</h2>
+        <p class="section-subtitle">الدفع نقداً عند الاستلام بعد فحص المنتج</p>
+      </div>
+
+      <div class="order-product-preview">
+        <img src="product.jpg" alt="Pelifish" onerror="this.src='https://placehold.co/150x150/0a1024/00d2ff?text=Pelifish'">
+        <div class="order-product-info">
+          <h4>مسدس الغسيل اللاسلكي Pelifish Pro (بالحقيبة)</h4>
+          <span>7,950 دج</span>
+        </div>
+      </div>
+
+      <form id="orderForm" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>الاسم واللقب الكامل *</label>
+            <input type="text" id="fullName" placeholder="أدخل اسمك الكامل" required>
+            <div class="error-msg" id="nameError">يرجى إدخال الاسم الكامل</div>
+          </div>
+
+          <div class="form-group">
+            <label>رقم الهاتف *</label>
+            <input type="tel" id="phone" placeholder="مثال: 0775571470" required>
+            <div class="error-msg" id="phoneError">يرجى إدخال رقم هاتف صحيح مكون من 10 أرقام</div>
+          </div>
+
+          <div class="form-group">
+            <label>الولاية (58 ولاية) *</label>
+            <select id="wilaya" required>
+              <option value="">-- اختر ولايتك --</option>
+              <option value="01 - أدرار">01 - أدرار</option>
+              <option value="02 - الشلف">02 - الشلف</option>
+              <option value="03 - الأغواط">03 - الأغواط</option>
+              <option value="04 - أم البواقي">04 - أم البواقي</option>
+              <option value="05 - باتنة">05 - باتنة</option>
+              <option value="06 - بجاية">06 - بجاية</option>
+              <option value="07 - بسكرة">07 - بسكرة</option>
+              <option value="08 - بشار">08 - بشار</option>
+              <option value="09 - البليدة">09 - البليدة</option>
+              <option value="10 - البويرة">10 - البويرة</option>
+              <option value="11 - تمنراست">11 - تمنراست</option>
+              <option value="12 - تبسة">12 - تبسة</option>
+              <option value="13 - تلمسان">13 - تلمسان</option>
+              <option value="14 - تيارت">14 - تيارت</option>
+              <option value="15 - تيزي وزو">15 - تيزي وزو</option>
+              <option value="16 - الجزائر العاصمة">16 - الجزائر العاصمة</option>
+              <option value="17 - الجلفة">17 - الجلفة</option>
+              <option value="18 - جيجل">18 - جيجل</option>
+              <option value="19 - سطيف">19 - سطيف</option>
+              <option value="20 - سعيدة">20 - سعيدة</option>
+              <option value="21 - سكيكدة">21 - سكيكدة</option>
+              <option value="22 - سيدي بلعباس">22 - سيدي بلعباس</option>
+              <option value="23 - عنابة">23 - عنابة</option>
+              <option value="24 - قالمة">24 - قالمة</option>
+              <option value="25 - قسنطينة">25 - قسنطينة</option>
+              <option value="26 - المدية">26 - المدية</option>
+              <option value="27 - مستغانم">27 - مستغانم</option>
+              <option value="28 - المسيلة">28 - المسيلة</option>
+              <option value="29 - معسكر">29 - معسكر</option>
+              <option value="30 - ورقلة">30 - ورقلة</option>
+              <option value="31 - وهران">31 - وهران</option>
+              <option value="32 - البيض">32 - البيض</option>
+              <option value="33 - إليزي">33 - إليزي</option>
+              <option value="34 - برج بوعريريج">34 - برج بوعريريج</option>
+              <option value="35 - بومرداس">35 - بومرداس</option>
+              <option value="36 - الطارف">36 - الطارف</option>
+              <option value="37 - تندوف">37 - تندوف</option>
+              <option value="38 - تيسمسيلت">38 - تيسمسيلت</option>
+              <option value="39 - الوادي">39 - الوادي</option>
+              <option value="40 - خنشلة">40 - خنشلة</option>
+              <option value="41 - سوق أهراس">41 - سوق أهراس</option>
+              <option value="42 - تيبازة">42 - تيبازة</option>
+              <option value="43 - ميلة">43 - ميلة</option>
+              <option value="44 - عين الدفلى">44 - عين الدفلى</option>
+              <option value="45 - النعامة">45 - النعامة</option>
+              <option value="46 - عين تموشنت">46 - عين تموشنت</option>
+              <option value="47 - غرداية">47 - غرداية</option>
+              <option value="48 - غليزان">48 - غليزان</option>
+              <option value="49 - تيميمون">49 - تيميمون</option>
+              <option value="50 - برج باجي مختار">50 - برج باجي مختار</option>
+              <option value="51 - أولاد جلال">51 - أولاد جلال</option>
+              <option value="52 - بني عباس">52 - بني عباس</option>
+              <option value="53 - عين صالح">53 - عين صالح</option>
+              <option value="54 - عين قزام">54 - عين قزام</option>
+              <option value="55 - تقرت">55 - تقرت</option>
+              <option value="56 - جانت">56 - جانت</option>
+              <option value="57 - المغير">57 - المغير</option>
+              <option value="58 - المنيعة">58 - المنيعة</option>
+            </select>
+            <div class="error-msg" id="wilayaError">يرجى اختيار الولاية</div>
+          </div>
+
+          <div class="form-group">
+            <label>البلدية / العنوان الدقيق *</label>
+            <input type="text" id="commune" placeholder="مثال: العفرون" required>
+            <div class="error-msg" id="communeError">يرجى إدخال اسم البلدية</div>
+          </div>
+
+          <div class="form-group">
+            <label>الكمية المطلوبة</label>
+            <div class="qty-control">
+              <button type="button" class="qty-btn" onclick="changeQty(-1)">-</button>
+              <span class="qty-value" id="qtyDisplay">1</span>
+              <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>طريقة التوصيل *</label>
+            <select id="deliveryType" onchange="updateTotal()">
+              <option value="600">توصيل إلى باب المنزل (+600 دج)</option>
+              <option value="400">مكتب شركة الشحن - Stop Desk (+400 دج)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-row">
+            <span>سعر المنتج (<span id="summaryQty">1</span> قطعة):</span>
+            <span id="subtotalCost">7,950 دج</span>
+          </div>
+          <div class="summary-row">
+            <span>تكلفة التوصيل:</span>
+            <span id="deliveryCost">600 دج</span>
+          </div>
+          <div class="summary-total">
+            <span>المجموع الكلي للدفع:</span>
+            <span id="totalCost">8,550 دج</span>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn shimmer-btn">
+          📲 تأكيد الطلب الآن عبر واتساب
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- إشعار الطلبات الحية -->
+  <div class="sales-toast" id="salesToast">
+    <div class="toast-avatar">🛒</div>
+    <div class="toast-text">
+      <strong id="toastBuyer">محمد من البليدة</strong> قام بطلب مسدس Pelifish Pro للتو
+      <span class="toast-time" id="toastTime">منذ دقيقتين • طلب مؤكد ✔</span>
+    </div>
+  </div>
+
+  <!-- شريط الطلب العائم السفلي -->
+  <div class="sticky-cta" id="stickyCta">
+    <div>
+      <div style="font-size: 0.78rem; color: var(--text-muted);">السعر الترويجي</div>
+      <div class="sticky-price">7,950 دج</div>
+    </div>
+    <a href="#order" class="sticky-btn shimmer-btn">اطلب الآن 🛒</a>
+  </div>
+
+  <!-- نافذة تكبير الصور -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" src="" alt="معاينة مكبرة">
+  </div>
+
+  <footer>
+    <p>© 2026 جميع الحقوق محفوظة لمتجر Vir Mart | للطلب المباشر: 0775571470</p>
+  </footer>
+
+  <script>
+    const UNIT_PRICE = 7950;
+    const WHATSAPP_PHONE = "213775571470";
+    let quantity = 1;
+
+    // 1. أنيميشن الظهور عند التمرير (Scroll Reveal)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    // 2. عداد تنازلي للعرض الترويجي
+    let totalSeconds = 2 * 3600 + 47 * 60 + 19;
+    setInterval(() => {
+      if (totalSeconds <= 0) totalSeconds = 3 * 3600;
+      totalSeconds--;
+      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+      const s = String(totalSeconds % 60).padStart(2, "0");
+      document.getElementById("countdownTimer").textContent = `${h}:${m}:${s}`;
+    }, 1000);
+
+    // 3. تحديث عدد المشاهدين المباشر بشكل واقعي
+    setInterval(() => {
+      const viewers = 17 + Math.floor(Math.random() * 14);
+      document.getElementById("liveViewers").textContent = viewers;
+    }, 5500);
+
+    // 4. إشعارات الطلبات الحية (Social Proof)
+    const recentBuyers = [
+      { name: "أمين من البليدة", time: "منذ دقيقتين" },
+      { name: "إسلام من الجزائر العاصمة", time: "منذ 4 دقائق" },
+      { name: "وليد من وهران", time: "منذ 6 دقائق" },
+      { name: "رضوان من سطيف", time: "منذ 9 دقائق" },
+      { name: "نبيل من قسنطينة", time: "منذ 11 دقيقة" },
+      { name: "سفيان من تيبازة", time: "منذ 15 دقيقة" }
+    ];
+    let buyerIdx = 0;
+    const toast = document.getElementById("salesToast");
+
+    function showSalesToast() {
+      const b = recentBuyers[buyerIdx % recentBuyers.length];
+      document.getElementById("toastBuyer").textContent = b.name;
+      document.getElementById("toastTime").textContent = `${b.time} • طلب مؤكد ✔`;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 4500);
+      buyerIdx++;
+    }
+
+    setTimeout(() => {
+      showSalesToast();
+      setInterval(showSalesToast, 14000);
+    }, 5000);
+
+    // 5. إظهار الشريط السفلي العائم عند التمرير
+    const stickyCta = document.getElementById("stickyCta");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 520) {
+        stickyCta.classList.add("visible");
+      } else {
+        stickyCta.classList.remove("visible");
+      }
+    });
+
+    // 6. معرض الصور والتكبير
+    function changeImage(thumbElement) {
+      document.getElementById("mainProductImg").src = thumbElement.src;
+      document.querySelectorAll(".thumb").forEach(img => img.classList.remove("active"));
+      thumbElement.classList.add("active");
+    }
+
+    function openLightbox(src) {
+      document.getElementById("lightboxImg").src = src;
+      document.getElementById("lightbox").classList.add("open");
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("open");
+    }
+
+    // 7. التحكم بالكمية والحساب التلقائي
+    function changeQty(delta) {
+      quantity += delta;
+      if (quantity < 1) quantity = 1;
+      if (quantity > 10) quantity = 10;
+      document.getElementById("qtyDisplay").textContent = quantity;
+      document.getElementById("summaryQty").textContent = quantity;
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const delivery = parseInt(document.getElementById("deliveryType").value, 10);
+      const subtotal = UNIT_PRICE * quantity;
+      const total = subtotal + delivery;
+      document.getElementById("subtotalCost").textContent = subtotal.toLocaleString("en-US") + " دج";
+      document.getElementById("deliveryCost").textContent = delivery.toLocaleString("en-US") + " دج";
+      document.getElementById("totalCost").textContent = total.toLocaleString("en-US") + " دج";
+    }
+
+    // 8. إرسال الطلب عبر واتساب
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.querySelectorAll(".error-msg").forEach(el => el.style.display = "none");
+
+      const name = document.getElementById("fullName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const wilaya = document.getElementById("wilaya").value;
+      const commune = document.getElementById("commune").value.trim();
+
+      let hasError = false;
+      if (name.length < 3) { document.getElementById("nameError").style.display = "block"; hasError = true; }
+      if (phone.length < 9) { document.getElementById("phoneError").style.display = "block"; hasError = true; }
+      if (!wilaya) { document.getElementById("wilayaError").style.display = "block"; hasError = true; }
+      if (commune.length < 2) { document.getElementById("communeError").style.display = "block"; hasError = true; }
+
+      if (hasError) return;
+
+      const deliverySelect = document.getElementById("deliveryType");
+      const deliveryText = deliverySelect.options[deliverySelect.selectedIndex].text;
+      const total = document.getElementById("totalCost").textContent;
+
+      const rawMessage =
+        `السلام عليكم متجر Vir Mart، أريد تأكيد طلبي:\n\n` +
+        `🛒 *المنتج:* مسدس الغسيل اللاسلكي Pelifish Pro\n` +
+        `🔢 *الكمية:* ${quantity}\n` +
+        `👤 *الاسم الكامل:* ${name}\n` +
+        `📱 *رقم الهاتف:* ${phone}\n` +
+        `📍 *الولاية:* ${wilaya}\n` +
+        `🏠 *البلدية:* ${commune}\n` +
+        `🚚 *التوصيل:* ${deliveryText}\n` +
+        `💰 *المجموع الكلي:* ${total}`;
+
+      window.location.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(rawMessage)}`;
+    });
+  </script>
+
+</body>
+</html>
